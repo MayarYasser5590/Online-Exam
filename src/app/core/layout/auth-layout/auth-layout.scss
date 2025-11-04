@@ -1,0 +1,17 @@
+$blue-spot: #93C5FD;  // Tailwind blue-300
+$blue-spot-2: #EFF6FF; // Tailwind blue-50
+$white-top: #FFFFFF;
+$soft-white: #F9FAFB;
+
+.exam-bg {
+  background-image:
+    radial-gradient(circle at top right, $blue-spot 0%, $blue-spot-2 25%, transparent 60%),
+    radial-gradient(circle at bottom left, $blue-spot 0%, $blue-spot-2 30%, transparent 65%),
+    radial-gradient(circle at bottom right, $blue-spot-2 0%, $blue-spot 25%, transparent 55%),
+    radial-gradient(circle at top left, $blue-spot-2 0%, $blue-spot 30%, transparent 60%),
+    linear-gradient(180deg, $white-top 0%, $soft-white 100%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
