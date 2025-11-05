@@ -6,3 +6,29 @@
 @import "flowbite/src/themes/default";
 @plugin "flowbite/plugin";
 @source "../node_modules/flowbite";
+
+
+
+.form-label {
+    @apply text-[16px] pb-1 font-geist font-medium leading-[100%] tracking-[0px] text-gray-700;
+  }
+
+.form-input{
+    @apply border border-[rgb(229,231,235)] rounded-md p-[10px] text-[14px] font-geist font-normal leading-[100%] tracking-[0px] text-gray-700 placeholder-gray-400 align-middle focus:outline-none focus:ring-2 focus:ring-blue-300;
+}
+
+.input-container{
+  @apply flex flex-col mb-[10px];
+}
+
+.form-end-ques{
+  @apply font-geist pt-9 font-medium text-[14px] leading-[100%] tracking-[0px] align-middle text-gray-800;
+}
+
+.auth-main-properties{
+  @apply flex flex-col justify-center items-center max-w-[452px] mx-auto min-h-screen;
+}
+
+.auth-footer-container{
+  @apply w-full flex flex-col justify-center items-center;
+}

@@ -1,68 +1,52 @@
-<main class="flex flex-col justify-center mx-auto w-[452px] items-center h-screen">
+<main class="auth-main-properties">
   <app-header class="self-start">Create Account</app-header>
-  <form>
+  <form class="w-full" [formGroup]="registerForm" (ngSubmit)="submitRegisterForm()">
     <div class="fullName mt-6">
       <div class="flex justify-center gap-x-[10px] items-center">
         <div class="flex flex-col mb-[10px] grow">
-          <label
-            for="firstName"
-            class="text-[16px] pb-1 font-geist font-medium leading-[100%] tracking-[0px] text-gray-700"
-            >First name</label
-          >
+          <label for="firstName" class="form-label">First name</label>
           <input
+            formControlName="firstName"
             type="text"
             id="firstName"
             placeholder="Ahmed"
-            class="border border-[#E5E7EB] rounded-md p-[10px] text-[14px] font-geist font-normal leading-[100%] tracking-[0px] text-gray-700 placeholder-gray-400 align-middle focus:outline-none focus:ring-2 focus:ring-blue-300"
+            class="form-input"
           />
         </div>
         <div class="flex flex-col mb-[10px] grow">
-          <label
-            for="lastName"
-            class="text-[16px] pb-1 font-geist font-medium leading-[100%] tracking-[0px] text-gray-700"
-            >Last name</label
-          >
+          <label for="lastName" class="form-label">Last name</label>
           <input
+            formControlName="lastName"
             type="text"
             id="lastName"
             placeholder="Abdullah"
-            class="border border-[#E5E7EB] rounded-md p-[10px] text-[14px] font-geist font-normal leading-[100%] tracking-[0px] text-gray-700 placeholder-gray-400 align-middle focus:outline-none focus:ring-2 focus:ring-blue-300"
+            class="form-input"
           />
         </div>
       </div>
     </div>
-    <div class="flex flex-col mb-[10px]">
-      <label
-        for="userName"
-        class="text-[16px] pb-1 font-geist font-medium leading-[100%] tracking-[0px] text-gray-700"
-        >Username</label
-      >
+    <div class="input-container">
+      <label for="userName" class="form-label">Username</label>
       <input
+        formControlName="userName"
         type="text"
         id="userName"
         placeholder="user123"
-        class="border border-[#E5E7EB] rounded-md p-[10px] text-[14px] font-geist font-normal leading-[100%] tracking-[0px] text-gray-700 placeholder-gray-400 align-middle focus:outline-none focus:ring-2 focus:ring-blue-300"
+        class="form-input"
       />
     </div>
-    <div class="flex flex-col mb-[10px]">
-      <label
-        for="email"
-        class="text-[16px] pb-1 font-geist font-medium leading-[100%] tracking-[0px] text-gray-700"
-        >Email</label
-      >
+    <div class="input-container">
+      <label for="email" class="form-label">Email</label>
       <input
+        formControlName="email"
         type="email"
         id="email"
         placeholder="user@example.com"
-        class="border border-[#E5E7EB] rounded-md p-[10px] text-[14px] font-geist font-normal leading-[100%] tracking-[0px] text-gray-700 placeholder-gray-400 align-middle focus:outline-none focus:ring-2 focus:ring-blue-300"
+        class="form-input"
       />
     </div>
-    <div class="flex flex-col mb-[10px]">
-      <label
-        for="phone"
-        class="text-[16px] pb-1 font-geist font-medium leading-[100%] tracking-[0px] text-gray-700"
-        >Phone</label
-      >
+    <div class="input-container">
+      <label for="phone" class="form-label">Phone</label>
       <div class="flex items-center border border-[#E5E7EB] rounded-md px-[10px] gap-2">
         <img src="/assets/flag.png" alt="flag" class="w-[23px] h-[16px]" />
         <span class="text-gray-300">EG (+20)</span>
@@ -77,45 +61,38 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
         </svg>
         <input
+          formControlName="phone"
           type="tel"
           placeholder="1012345678"
-          class="border grow border-[#E5E7EB] rounded-md p-[10px] text-[14px] font-geist font-normal leading-[100%] tracking-[0px] text-gray-700 placeholder-gray-400 align-middle focus:outline-none focus:ring-2 focus:ring-blue-300"
+          class="form-input grow"
         />
       </div>
     </div>
-    <div class="flex flex-col mb-[10px]">
-      <label
-        for="password"
-        class="text-[16px] pb-1 font-geist font-medium leading-[100%] tracking-[0px] text-gray-700"
-        >Password</label
-      >
+    <div class="input-container">
+      <label for="password" class="form-label">Password</label>
       <input
+        formControlName="password"
         type="password"
         id="password"
         placeholder="********"
-        class="mb-10px border border-[#E5E7EB] rounded-md p-[10px] text-[14px] font-geist font-normal leading-[100%] tracking-[0px] text-gray-700 placeholder-gray-400 align-middle focus:outline-none focus:ring-2 focus:ring-blue-300"
+        class="form-input"
       />
     </div>
-    <div class="flex flex-col mb-[10px]">
-      <label
-        for="rePassword"
-        class="text-[16px] pb-1 font-geist font-medium leading-[100%] tracking-[0px] text-gray-700"
-        >Confirm Password</label
-      >
+    <div class="input-container">
+      <label for="rePassword" class="form-label">Confirm Password</label>
       <input
+        formControlName="repassword"
         type="password"
         id="rePassword"
         placeholder="********"
-        class="mb-10px border border-[#E5E7EB] rounded-md p-[10px] text-[14px] font-geist font-normal leading-[100%] tracking-[0px] text-gray-700 placeholder-gray-400 align-middle focus:outline-none focus:ring-2 focus:ring-blue-300"
+        class="form-input"
       />
     </div>
-    <div class="pt-6 flex flex-col justify-center items-center">
+    <div class="pt-6 auth-footer-container">
       <div class="w-full">
         <app-main-button>Create Account</app-main-button>
       </div>
-      <p
-        class="font-geist pt-9 font-medium text-[14px] leading-[100%] tracking-[0px] align-middle text-gray-800"
-      >
+      <p class="form-end-ques">
         Already have an account?<a routerLink="/login" class="text-[#155DFC]"> Login</a>
       </p>
     </div>
