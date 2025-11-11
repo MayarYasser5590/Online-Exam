@@ -1,8 +1,8 @@
-<main class="auth-main-properties">
+<main class="auth-main-properties my-[10px] lg-my[4px]">
   <app-header class="self-start">Create Account</app-header>
   <form class="w-full" [formGroup]="registerForm" (ngSubmit)="submitRegisterForm()">
-    <div class="fullName mt-6">
-      <div class="flex justify-center gap-x-[10px] items-center">
+    <div class="fullName mt-6 w-full mx-auto">
+      <div class="flex justify-center md:gap-x-[10px] items-center">
         <div class="flex flex-col mb-[10px] grow">
           <label for="firstName" class="form-label">First name</label>
           <input

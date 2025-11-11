@@ -15,6 +15,12 @@
 
 .form-input{
     @apply border border-[rgb(229,231,235)] rounded-md p-[10px] text-[14px] font-geist font-normal leading-[100%] tracking-[0px] text-gray-700 placeholder-gray-400 align-middle focus:outline-none focus:ring-2 focus:ring-blue-300;
+
+    @apply  text-[10px] md:text-[16px] pb-1 font-geist font-medium leading-[100%] tracking-[0px] text-gray-700;
+  }
+
+.form-input{
+    @apply border border-[rgb(229,231,235)] rounded-md p-[10px] text-[10px] md:text-[14px] font-geist font-normal leading-[100%] tracking-[0px] text-gray-700 placeholder-gray-400 align-middle focus:outline-none focus:ring-2 focus:ring-blue-300;
 }
 
 .input-container{
@@ -26,7 +32,7 @@
 }
 
 .auth-main-properties{
-  @apply flex flex-col justify-center items-center max-w-[452px] mx-auto min-h-screen;
+  @apply flex flex-col justify-center items-center max-w-[90%]  md:max-w-[452px] mx-auto min-h-screen;
 }
 
 .auth-footer-container{
