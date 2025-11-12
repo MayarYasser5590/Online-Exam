@@ -1,76 +1,72 @@
-<section class="flex justify-center items-center max-w-[90%] md:max-w-[452px] mx-auto min-h-screen">
-  <main class="w-full">
-    <div class="mb-10">
-      <img src="/assets/Back Container.png" alt="Back Container" />
+<main
+  class="flex flex-col justify-center items-start max-w-[90%] md:max-w-[452px] mx-auto min-h-screen"
+>
+  <div class="mb-10">
+    <img src="/assets/Back Container.png" alt="Back Container" />
+  </div>
+  <div class="pb-6">
+    <app-header>Verify OTP</app-header>
+    <div
+      class="mt-[10px] mb-6 font-geist text-base font-normal text-[16px] leading-[100%] tracking-[0px] align-middle"
+    >
+      <p class="pb-[10px] text-[#6B7280]">Please enter the 6-digits code we have sent to:</p>
+      <p class="text-[#1F2937]">
+        user@example.com.
+        <a routerLink="/forgetPassword" class="font-medium underline text-[#155DFC]">Edit</a>
+      </p>
     </div>
-    <div class="pb-6">
-      <app-header>Verify OTP</app-header>
-      <div
-        class="mt-[10px] mb-6 font-geist text-base font-normal text-[16px] leading-[100%] tracking-[0px] align-middle"
-      >
-        <p class="pb-[10px] text-[#6B7280]">Please enter the 6-digits code we have sent to:</p>
-        <p class="text-[#1F2937]">
-          user@example.com.
-          <a routerLink="/forgetPassword" class="font-medium underline text-[#155DFC]">Edit</a>
+  </div>
+  <div class="flex flex-col w-full justify-center items-center">
+    <form [formGroup]="otpForm" (ngSubmit)="submitOtpForm()" class="w-full">
+      <div class="flex gap-4 justify-center mb-6">
+        <input
+          formControlName="digit1"
+          type="text"
+          maxlength="1"
+          class="w-10 h-10 border border-[##E5E7EB]/60 bg-transparent text-center text-lg rounded-md focus:outline-none focus:border-[#3B82F6] focus:text-[#3B82F6]"
+        />
+        <input
+          formControlName="digit2"
+          type="text"
+          maxlength="1"
+          class="w-10 h-10 border border-[##E5E7EB]/60 bg-transparent text-center text-lg rounded-md focus:outline-none focus:border-[#3B82F6] focus:text-[#3B82F6]"
+        />
+        <input
+          formControlName="digit3"
+          type="text"
+          maxlength="1"
+          class="w-10 h-10 border border-[##E5E7EB]/60 bg-transparent text-center text-lg rounded-md focus:outline-none focus:border-[#3B82F6] focus:text-[#3B82F6]"
+        />
+        <input
+          formControlName="digit4"
+          type="text"
+          maxlength="1"
+          class="w-10 h-10 border border-[##E5E7EB]/60 bg-transparent text-center text-lg rounded-md focus:outline-none focus:border-[#3B82F6] focus:text-[#3B82F6]"
+        />
+        <input
+          formControlName="digit5"
+          type="text"
+          maxlength="1"
+          class="w-10 h-10 border border-[##E5E7EB]/60 bg-transparent text-center text-lg rounded-md focus:outline-none focus:border-[#3B82F6] focus:text-[#3B82F6]"
+        />
+        <input
+          formControlName="digit6"
+          type="text"
+          maxlength="1"
+          class="w-10 h-10 border border-[##E5E7EB]/60 bg-transparent text-center text-lg rounded-md focus:outline-none focus:border-[#3B82F6] focus:text-[#3B82F6]"
+        />
+      </div>
+      <div>
+        <p
+          class="text-[#6B7280] text-center my-9 font-geist text-base font-medium text-[14px] leading-[100%] tracking-[0px] align-middle"
+        >
+          Didn’t receive the code? Resend <a class="text-[#155DFC]">Resend</a>
+        </p>
+        <app-main-button class="w-full">Verify Code</app-main-button>
+        <p class="form-end-ques text-center">
+          Don’t have an account?<a routerLink="/register" class="text-[#155DFC]"> Create yours</a>
         </p>
       </div>
-    </div>
-    <div class="flex flex-col justify-center items-center">
-      <form [formGroup]="otpForm" (ngSubmit)="submitOtpForm()">
-        <div class="flex gap-4 justify-center mb-6">
-          <input
-            formControlName="digit1"
-            type="text"
-            maxlength="1"
-            class="w-10 h-10 border border-[##E5E7EB]/60 bg-transparent text-center text-lg rounded-md focus:outline-none focus:border-[#3B82F6] focus:text-[#3B82F6]"
-          />
-          <input
-            formControlName="digit2"
-            type="text"
-            maxlength="1"
-            class="w-10 h-10 border border-[##E5E7EB]/60 bg-transparent text-center text-lg rounded-md focus:outline-none focus:border-[#3B82F6] focus:text-[#3B82F6]"
-          />
-          <input
-            formControlName="digit3"
-            type="text"
-            maxlength="1"
-            class="w-10 h-10 border border-[##E5E7EB]/60 bg-transparent text-center text-lg rounded-md focus:outline-none focus:border-[#3B82F6] focus:text-[#3B82F6]"
-          />
-          <input
-            formControlName="digit4"
-            type="text"
-            maxlength="1"
-            class="w-10 h-10 border border-[##E5E7EB]/60 bg-transparent text-center text-lg rounded-md focus:outline-none focus:border-[#3B82F6] focus:text-[#3B82F6]"
-          />
-          <input
-            formControlName="digit5"
-            type="text"
-            maxlength="1"
-            class="w-10 h-10 border border-[##E5E7EB]/60 bg-transparent text-center text-lg rounded-md focus:outline-none focus:border-[#3B82F6] focus:text-[#3B82F6]"
-          />
-          <input
-            formControlName="digit6"
-            type="text"
-            maxlength="1"
-            class="w-10 h-10 border border-[##E5E7EB]/60 bg-transparent text-center text-lg rounded-md focus:outline-none focus:border-[#3B82F6] focus:text-[#3B82F6]"
-          />
-        </div>
-        <div class="flex flex-col justify-center items-center">
-          <p
-            class="text-[#6B7280] font-geist text-base font-medium text-[14px] leading-[100%] tracking-[0px] align-middle"
-          >
-            Didn’t receive the code? Resend <a class="text-[#155DFC]">Resend</a>
-          </p>
-          <div class="pt-9 flex flex-col justify-center items-center">
-            <app-main-button routerLink="/resetPassword">Verify Code</app-main-button>
-            <p class="form-end-ques">
-              Don’t have an account?<a routerLink="/register" class="text-[#155DFC]">
-                Create yours</a
-              >
-            </p>
-          </div>
-        </div>
-      </form>
-    </div>
-  </main>
-</section>
+    </form>
+  </div>
+</main>

@@ -1,21 +1,20 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Header } from '../../components/ui/header/header';
-import { Router, RouterLink } from '@angular/router';
 import { MainButton } from '../../../../shared/components/UI/main-button/main-button';
-import { AuthFlow } from '../../services/auth-flow';
-import { FormControl, FormGroup , ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-verify-otp',
-  imports: [Header, RouterLink, MainButton , ReactiveFormsModule],
+  standalone: true,
+  imports: [Header, MainButton, ReactiveFormsModule , RouterLink],
   templateUrl: './verify-otp.html',
   styleUrl: './verify-otp.scss',
 })
-export class VerifyOTP implements OnInit {
-  router = inject(Router);
-  authFlow = inject(AuthFlow);
+export class VerifyOTP {
+  @Output() verified = new EventEmitter<void>();
 
-  otpForm: FormGroup = new FormGroup({
+  otpForm = new FormGroup({
     digit1: new FormControl(''),
     digit2: new FormControl(''),
     digit3: new FormControl(''),
@@ -24,16 +23,13 @@ export class VerifyOTP implements OnInit {
     digit6: new FormControl(''),
   });
 
-  ngOnInit() {
-    if (!this.authFlow.isFlowActive()) {
-      this.router.navigate(['/forgetPassword']);
-    }
-  }
-
   submitOtpForm() {
-
-      this.authFlow.markVerified();
-      this.router.navigate(['/resetPassword']);
-      console.log('Please enter a valid 6-digit OTP');
-}
+  const otp = Object.values(this.otpForm.value).join('');
+  if (otp.length === 6) {
+    this.verified.emit(); 
+  } else {
+    console.log('Invalid OTP');
   }
+}
+
+}
