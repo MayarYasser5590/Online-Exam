@@ -38,14 +38,17 @@ export class AuthService implements AuthAPI {
          catchError(err => of(err))
 )
   }
-    deleteMyAccount(data: any): Observable<any> {
-      return this.httpClient.delete(AuthEndPoint.deleteMyAccount , {
-        body:data
-      }).
-      pipe(map((res => this.authAPIAdaptorService.adapt(res))),      
-      catchError(err => of(err))
-)
-  }
+deleteMyAccount(): Observable<any> {
+  return this.httpClient.delete(AuthEndPoint.deleteMyAccount, {
+    headers: {
+      Authorization: `Bearer ${this.token}`
+    }
+  }).pipe(
+    map(res => this.authAPIAdaptorService.adapt(res)),
+    catchError(err => of(err))
+  );
+}
+
     editProfile(data: any): Observable<any> {
       return this.httpClient.put(AuthEndPoint.editProfile , data ,{
         headers:{
@@ -55,28 +58,26 @@ export class AuthService implements AuthAPI {
       catchError(err => of(err))
 )
   }
-    logOut(): Observable<any> {
-      return this.httpClient.get(AuthEndPoint.logOut , {
-        headers:{
-        Authorization: `Bearer ${this.token}`
-        }}
-      ).
-      pipe(map((res =>{
-        localStorage.removeItem('token');
-        return this.authAPIAdaptorService.adapt(res)})),      
-      catchError(err => of(err))
+logOut(): Observable<any> {
+  return this.httpClient.get(AuthEndPoint.logOut, {
+    headers:{ Authorization: `Bearer ${this.token}` }
+  }).pipe(
+    map(res => {
+      localStorage.removeItem('token');
+      return this.authAPIAdaptorService.adapt(res);
+    }),
+    catchError(err => of(err))
+  );
+}
 
-    )
-  }
-    getLoggedUserInfo(): Observable<any> {
-      return this.httpClient.get(AuthEndPoint.getLoggedUserInfo , {
-        headers:{
-        Authorization: `Bearer ${this.token}`
-        }}).
-      pipe(map((res => this.authAPIAdaptorService.adapt(res))),      
-      catchError(err => of(err))
-)
-  }
+getLoggedUserInfo(): Observable<any> {
+  return this.httpClient.get(AuthEndPoint.getLoggedUserInfo , {
+    headers:{ Authorization: `Bearer ${this.token}` }
+  }).pipe(
+    map(res => this.authAPIAdaptorService.adapt(res)),
+    catchError(err => of(err))
+  );
+}
     forgotPassword(data: any): Observable<any> {
       return this.httpClient.post(AuthEndPoint.forgotPassword , data).
       pipe(map((res => this.authAPIAdaptorService.adapt(res))),      
