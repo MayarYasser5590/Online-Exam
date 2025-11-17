@@ -1,18 +1,39 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { Header } from '../../components/ui/header/header';
 import { MainButton } from '../../../../shared/components/UI/main-button/main-button';
 import { ReactiveFormsModule, FormControl, FormGroup } from '@angular/forms';
 import { RouterLink } from "@angular/router";
+import { initFlowbite } from 'flowbite';
+import { EmailService } from '../../services/email';
+import { AuthService } from '../../../../../../projects/auth/src/lib/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ErrorResponseMsg } from "../../components/ui/error-response-msg/error-response-msg";
 
 @Component({
   selector: 'app-verify-otp',
   standalone: true,
-  imports: [Header, MainButton, ReactiveFormsModule , RouterLink],
+  imports: [Header, MainButton, ReactiveFormsModule, RouterLink, ErrorResponseMsg],
   templateUrl: './verify-otp.html',
   styleUrl: './verify-otp.scss',
 })
-export class VerifyOTP {
+export class VerifyOTP implements OnInit {
   @Output() verified = new EventEmitter<void>();
+
+  private readonly emailService = inject(EmailService);
+  private readonly authService = inject(AuthService);
+  email: string | null = null;
+  msgError: string = '';
+  isLoading = false;
+
+  ngOnInit(): void {
+    this.email = this.emailService.email;
+  }
+
+  ngAfterViewInit(): void {
+  setTimeout(() => {
+    initFlowbite();
+  });
+}
 
   otpForm = new FormGroup({
     digit1: new FormControl(''),
@@ -23,13 +44,25 @@ export class VerifyOTP {
     digit6: new FormControl(''),
   });
 
-  submitOtpForm() {
-  const otp = Object.values(this.otpForm.value).join('');
-  if (otp.length === 6) {
-    this.verified.emit(); 
-  } else {
-    console.log('Invalid OTP');
+ submitOtpForm() {
+  if (this.otpForm.valid) {
+    const resetCode = Object.values(this.otpForm.value).join("");
+    this.isLoading = true;
+
+    this.authService.verifyResetCode({resetCode}).subscribe({
+      next: (res) => {
+        this.isLoading = false;
+        this.verified.emit(); 
+        console.log(res);
+      },
+      error: (err: HttpErrorResponse) => {
+        this.isLoading = false;
+        this.msgError = err.error.message;
+        console.log("SERVER ERROR:", err.error.message);
+      }
+    });
   }
 }
+
 
 }

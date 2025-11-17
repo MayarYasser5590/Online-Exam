@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-main-button',
@@ -7,5 +7,4 @@ import { Component } from '@angular/core';
   styleUrl: './main-button.scss',
 })
 export class MainButton {
-
 }

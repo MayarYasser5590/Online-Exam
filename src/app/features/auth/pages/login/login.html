@@ -2,18 +2,30 @@
   <app-header class="self-start">Login</app-header>
   <form [formGroup]="loginForm" class="w-full" (ngSubmit)="submitLoginForm()">
     <div class="input-container mt-6">
+      @let emailControl = loginForm.get('email');
       <label for="email" class="form-label">Email</label>
       <input
+        [class.border-red-600]="emailControl?.invalid && emailControl?.touched"
+        [class.border-gray-200]="!(emailControl?.invalid && emailControl?.touched)"
         formControlName="email"
         type="email"
         id="email"
         placeholder="user@example.com"
         class="form-input"
       />
+      @if (emailControl?.errors && emailControl?.touched) { @if (emailControl?.getError('required'))
+      {
+      <app-input-error-message>Email is required</app-input-error-message>
+      } @if (emailControl?.getError('email')) {
+      <app-input-error-message>Please enter a valid email address</app-input-error-message>
+      } }
     </div>
     <div class="flex flex-col">
+      @let passwordControl = loginForm.get('password');
       <label for="password" class="form-label">Password</label>
       <input
+        [class.border-red-600]="passwordControl?.invalid && passwordControl?.touched"
+        [class.border-gray-200]="!(passwordControl?.invalid && passwordControl?.touched)"
         formControlName="password"
         type="password"
         id="password"
@@ -25,9 +37,20 @@
         class="self-end font-inter pt-[10px] font-medium text-[14px] leading-[100%] tracking-[0px] text-[#155DFC]"
         >Forgot your password?</a
       >
+      @if (passwordControl?.errors && passwordControl?.touched) {
+      @if(passwordControl?.getError('required')) {
+      <app-input-error-message>Password is required</app-input-error-message>
+      }}
     </div>
+    @if (msgError) {
+    <app-error-response-msg>{{ msgError }}</app-error-response-msg>
+    }
     <div class="pt-9 auth-footer-container">
-      <app-main-button>Login</app-main-button>
+      <app-main-button
+        >Login @if (isLoading) {
+        <span><i class="fas fa-spin fa-spinner text-white"></i></span>
+        }
+      </app-main-button>
       <p class="form-end-ques">
         Don’t have an account?<a routerLink="/register" class="text-[#155DFC]"> Create yours</a>
       </p>

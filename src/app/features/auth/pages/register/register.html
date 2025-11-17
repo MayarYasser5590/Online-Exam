@@ -1,11 +1,15 @@
 <main class="auth-main-properties my-[10px] lg-my[4px]">
   <app-header class="self-start">Create Account</app-header>
   <form class="w-full" [formGroup]="registerForm" (ngSubmit)="submitRegisterForm()">
-    <div class="fullName mt-6 w-full mx-auto">
+    <div class="fullName mt-6 w-full mx-auto mb-[10px]">
+      @let fullNameControl = registerForm.get('firstName') || registerForm.get('lastName');
       <div class="flex justify-center md:gap-x-[10px] items-center">
-        <div class="flex flex-col mb-[10px] grow">
+        <div class="flex flex-col grow">
+          @let firstNameControl = registerForm.get('firstName');
           <label for="firstName" class="form-label">First name</label>
           <input
+            [class.border-red-600]="firstNameControl?.invalid && firstNameControl?.touched"
+            [class.border-gray-200]="!(firstNameControl?.invalid && firstNameControl?.touched)"
             formControlName="firstName"
             type="text"
             id="firstName"
@@ -13,9 +17,12 @@
             class="form-input"
           />
         </div>
-        <div class="flex flex-col mb-[10px] grow">
+        <div class="flex flex-col grow">
+          @let lastNameControl = registerForm.get('lastName');
           <label for="lastName" class="form-label">Last name</label>
           <input
+            [class.border-red-600]="lastNameControl?.invalid && lastNameControl?.touched"
+            [class.border-gray-200]="!(lastNameControl?.invalid && lastNameControl?.touched)"
             formControlName="lastName"
             type="text"
             id="lastName"
@@ -24,28 +31,55 @@
           />
         </div>
       </div>
+      @if ((fullNameControl?.errors) && (fullNameControl?.touched)) {
+      @if(fullNameControl?.getError('required')) {
+      <app-input-error-message>Your First name and Last name are required </app-input-error-message>
+      }@else if (fullNameControl?.getError('minlength')) {
+      <app-input-error-message
+        >First name and Last name must be at least 3 characters</app-input-error-message
+      >
+      } }
     </div>
     <div class="input-container">
-      <label for="userName" class="form-label">Username</label>
+      @let userNameControl = registerForm.get('username');
+      <label for="username" class="form-label">Username</label>
       <input
-        formControlName="userName"
+        [class.border-red-600]="userNameControl?.invalid && userNameControl?.touched"
+        [class.border-gray-200]="!(userNameControl?.invalid && userNameControl?.touched)"
+        formControlName="username"
         type="text"
-        id="userName"
+        id="username"
         placeholder="user123"
         class="form-input"
       />
+      @if ((userNameControl?.errors) && (userNameControl?.touched)) {
+      @if(userNameControl?.getError('required')) {
+      <app-input-error-message>Your Username is required </app-input-error-message>
+      }@else if (userNameControl?.getError('minlength')) {
+      <app-input-error-message>Username must be at least 3 characters</app-input-error-message>
+      } }
     </div>
     <div class="input-container">
+      @let emailControl = registerForm.get('email');
       <label for="email" class="form-label">Email</label>
       <input
+        [class.border-red-600]="emailControl?.invalid && emailControl?.touched"
+        [class.border-gray-200]="!(emailControl?.invalid && emailControl?.touched)"
         formControlName="email"
         type="email"
         id="email"
         placeholder="user@example.com"
         class="form-input"
       />
+      @if (emailControl?.errors && emailControl?.touched) { @if (emailControl?.getError('required'))
+      {
+      <app-input-error-message>Email is required</app-input-error-message>
+      } @if (emailControl?.getError('email')) {
+      <app-input-error-message>Please enter a valid email address</app-input-error-message>
+      } }
     </div>
     <div class="input-container">
+      @let phoneControl = registerForm.get('phone');
       <label for="phone" class="form-label">Phone</label>
       <div class="flex items-center border border-[#E5E7EB] rounded-md px-[10px] gap-2">
         <img src="/assets/flag.png" alt="flag" class="w-[23px] h-[16px]" />
@@ -61,40 +95,65 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
         </svg>
         <input
+          [class.border-red-600]="phoneControl?.invalid && phoneControl?.touched"
+          [class.border-gray-200]="!(phoneControl?.invalid && phoneControl?.touched)"
           formControlName="phone"
           type="tel"
           placeholder="1012345678"
           class="form-input grow"
         />
       </div>
+      @if (phoneControl?.errors && phoneControl?.touched) { @if (phoneControl?.getError('required'))
+      {
+      <app-input-error-message>Phone number is required</app-input-error-message>
+      } @if (phoneControl?.getError('pattern')) {
+      <app-input-error-message>Please enter a valid Egyptian phone number</app-input-error-message>
+      } }
     </div>
     <div class="input-container">
+      @let passwordControl = registerForm.get('password');
       <label for="password" class="form-label">Password</label>
       <input
+        [class.border-red-600]="passwordControl?.invalid && passwordControl?.touched"
+        [class.border-gray-200]="!(passwordControl?.invalid && passwordControl?.touched)"
         formControlName="password"
         type="password"
         id="password"
         placeholder="********"
         class="form-input"
       />
+      @if (passwordControl?.errors && passwordControl?.touched) { @if
+      (passwordControl?.getError('required')) {
+      <app-input-error-message>Password is required</app-input-error-message>
+      } @if (passwordControl?.getError('pattern')) {
+      <app-input-error-message>
+        Password must contain at least 8 characters, including uppercase, lowercase, number, and
+        special character
+      </app-input-error-message>
+      } }
     </div>
     <div class="input-container">
+      @let rePasswordControl = registerForm.get('rePassword');
       <label for="rePassword" class="form-label">Confirm Password</label>
       <input
-        formControlName="repassword"
+        [class.border-red-600]="rePasswordControl?.invalid && rePasswordControl?.touched"
+        [class.border-gray-200]="!(rePasswordControl?.invalid && rePasswordControl?.touched)"
+        formControlName="rePassword"
         type="password"
         id="rePassword"
         placeholder="********"
         class="form-input"
       />
+      @if (rePasswordControl?.errors && rePasswordControl?.touched) {
+      @if(rePasswordControl?.getError('required')) {
+      <app-input-error-message>Password is required</app-input-error-message>
+      }@else if (rePasswordControl?.getError('mismatch')) {
+      <app-input-error-message>Password confirmation is incorrect</app-input-error-message>
+      } }
     </div>
-    <div class="pt-6 auth-footer-container">
-      <div class="w-full">
-        <app-main-button>Create Account</app-main-button>
-      </div>
-      <p class="form-end-ques">
-        Already have an account?<a routerLink="/login" class="text-[#155DFC]"> Login</a>
-      </p>
-    </div>
+    @if (msgError) {
+    <app-error-response-msg>{{ msgError }}</app-error-response-msg>
+    }
+    <app-register-footer [isLoading]="isLoading"></app-register-footer>
   </form>
 </main>

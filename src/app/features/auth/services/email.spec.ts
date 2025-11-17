@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AuthFlow } from './auth-flow';
+import { EmailService } from './email';
 
-describe('AuthFlow', () => {
-  let service: AuthFlow;
+describe('Email', () => {
+  let service: EmailService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AuthFlow);
+    service = TestBed.inject(EmailService);
   });
 
   it('should be created', () => {

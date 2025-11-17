@@ -12,19 +12,33 @@
     class="input-container w-full"
     (ngSubmit)="submitForgetPassForm()"
   >
+    @let emailControl = forgetPassForm.get('email');
     <label for="email" class="form-label">Email</label>
     <input
+      [class.border-red-600]="emailControl?.invalid && emailControl?.touched"
+      [class.border-gray-200]="!(emailControl?.invalid && emailControl?.touched)"
       formControlName="email"
       type="email"
       id="email"
       placeholder="user@example.com"
       class="form-input"
     />
+    @if (emailControl?.errors && emailControl?.touched) { @if (emailControl?.getError('required')) {
+    <app-input-error-message>Email is required</app-input-error-message>
+    } @if (emailControl?.getError('email')) {
+    <app-input-error-message>Please enter a valid email address</app-input-error-message>
+    } } @if (msgError) {
+    <app-error-response-msg>{{ msgError }}</app-error-response-msg>
+    }
+
     <div class="auth-footer-container">
       <app-main-button class="pt-9">
         <div class="flex justify-center items-center">
           <span class="pe-[10px]">Continue</span>
-          <img class="w-[18px] h-[18px]" src="/assets/move-right.png" alt="continue" />
+          <img class="w-[18px] h-[18px] me-[10px]" src="/assets/move-right.png" alt="continue" />
+          @if (isLoading) {
+          <span><i class="fas fa-spin fa-spinner text-white"></i></span>
+          }
         </div>
       </app-main-button>
       <p class="form-end-ques">
