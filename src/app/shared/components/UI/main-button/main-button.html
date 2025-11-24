@@ -1,6 +1,13 @@
 <button
   type="submit"
-  class="bg-[#155DFC] text-white w-full font-medium text-[14px] leading-[100%] tracking-[0px] p-[10px] hover:bg-[#0F4BCC] transition-colors duration-200"
+  class="bg-[#155DFC] flex justify-center items-center text-white w-full font-medium text-[14px] leading-[100%] tracking-[0px] p-[10px] hover:bg-[#0F4BCC] transition-colors duration-200"
 >
+  @if (label()) {
+  <span class="pe-[10px]">{{ label() }}</span>
+
+  @if (icon()) {
+  <img class="w-[18px] h-[18px]" [src]="icon()" alt="button icon" />
+  } } @else {
   <ng-content></ng-content>
+  }
 </button>
