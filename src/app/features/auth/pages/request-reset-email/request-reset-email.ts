@@ -7,7 +7,6 @@ import { RouterLink } from "@angular/router";
 import { HttpErrorResponse } from '@angular/common/http';
 import { InputErrorMessage } from "../../components/ui/input-error-message/input-error-message";
 import { ErrorResponseMsg } from "../../components/ui/error-response-msg/error-response-msg";
-import { Subscription } from 'rxjs';
 import { EmailService } from '../../services/email';
 
 @Component({

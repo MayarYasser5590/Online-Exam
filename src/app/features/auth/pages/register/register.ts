@@ -1,8 +1,7 @@
 import { AuthService } from './../../../../../../projects/auth/src/lib/auth.service';
 import { Component, inject } from '@angular/core';
 import { Header } from '../../components/ui/header/header';
-import { MainButton } from '../../../../shared/components/UI/main-button/main-button';
-import { Router, RouterLink } from "@angular/router";
+import { Router} from "@angular/router";
 import { ReactiveFormsModule ,FormControl, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { RegisterFooter } from "./components/register-footer/register-footer";
 import { HttpErrorResponse } from '@angular/common/http';
@@ -10,7 +9,7 @@ import { InputErrorMessage } from "../../components/ui/input-error-message/input
 import { ErrorResponseMsg } from "../../components/ui/error-response-msg/error-response-msg";
 @Component({
   selector: 'app-register',
-  imports: [Header, MainButton, RouterLink, ReactiveFormsModule, RegisterFooter, InputErrorMessage, ErrorResponseMsg],
+  imports: [Header, ReactiveFormsModule, RegisterFooter, InputErrorMessage, ErrorResponseMsg],
   templateUrl: './register.html',
   styleUrl: './register.scss',
 })
