@@ -1,0 +1,100 @@
+<main class="auth-main-properties my-[10px] lg-my[4px]">
+  <app-header class="self-start">Create Account</app-header>
+  <form class="w-full" [formGroup]="registerForm" (ngSubmit)="submitRegisterForm()">
+    <div class="fullName mt-6 w-full mx-auto">
+      <div class="flex justify-center md:gap-x-[10px] items-center">
+        <div class="flex flex-col mb-[10px] grow">
+          <label for="firstName" class="form-label">First name</label>
+          <input
+            formControlName="firstName"
+            type="text"
+            id="firstName"
+            placeholder="Ahmed"
+            class="form-input"
+          />
+        </div>
+        <div class="flex flex-col mb-[10px] grow">
+          <label for="lastName" class="form-label">Last name</label>
+          <input
+            formControlName="lastName"
+            type="text"
+            id="lastName"
+            placeholder="Abdullah"
+            class="form-input"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="input-container">
+      <label for="userName" class="form-label">Username</label>
+      <input
+        formControlName="userName"
+        type="text"
+        id="userName"
+        placeholder="user123"
+        class="form-input"
+      />
+    </div>
+    <div class="input-container">
+      <label for="email" class="form-label">Email</label>
+      <input
+        formControlName="email"
+        type="email"
+        id="email"
+        placeholder="user@example.com"
+        class="form-input"
+      />
+    </div>
+    <div class="input-container">
+      <label for="phone" class="form-label">Phone</label>
+      <div class="flex items-center border border-[#E5E7EB] rounded-md px-[10px] gap-2">
+        <img src="/assets/flag.png" alt="flag" class="w-[23px] h-[16px]" />
+        <span class="text-gray-300">EG (+20)</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          class="w-[14px] h-[14px] text-gray-400 cursor-pointer"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+        </svg>
+        <input
+          formControlName="phone"
+          type="tel"
+          placeholder="1012345678"
+          class="form-input grow"
+        />
+      </div>
+    </div>
+    <div class="input-container">
+      <label for="password" class="form-label">Password</label>
+      <input
+        formControlName="password"
+        type="password"
+        id="password"
+        placeholder="********"
+        class="form-input"
+      />
+    </div>
+    <div class="input-container">
+      <label for="rePassword" class="form-label">Confirm Password</label>
+      <input
+        formControlName="repassword"
+        type="password"
+        id="rePassword"
+        placeholder="********"
+        class="form-input"
+      />
+    </div>
+    <div class="pt-6 auth-footer-container">
+      <div class="w-full">
+        <app-main-button>Create Account</app-main-button>
+      </div>
+      <p class="form-end-ques">
+        Already have an account?<a routerLink="/login" class="text-[#155DFC]"> Login</a>
+      </p>
+    </div>
+  </form>
+</main>
