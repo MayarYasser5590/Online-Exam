@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegisterFooter } from './register-footer';
+import { AuthFooter } from './auth-footer';
 
-describe('RegisterFooter', () => {
-  let component: RegisterFooter;
-  let fixture: ComponentFixture<RegisterFooter>;
+describe('AuthFooter', () => {
+  let component: AuthFooter;
+  let fixture: ComponentFixture<AuthFooter>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RegisterFooter]
+      imports: [AuthFooter]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RegisterFooter);
+    fixture = TestBed.createComponent(AuthFooter);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

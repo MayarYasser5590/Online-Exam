@@ -31,14 +31,7 @@
           />
         </div>
       </div>
-      @if ((fullNameControl?.errors) && (fullNameControl?.touched)) {
-      @if(fullNameControl?.getError('required')) {
-      <app-input-error-message>Your First name and Last name are required </app-input-error-message>
-      }@else if (fullNameControl?.getError('minlength')) {
-      <app-input-error-message
-        >First name and Last name must be at least 3 characters</app-input-error-message
-      >
-      } }
+      <app-input-error-message [control]="fullNameControl"></app-input-error-message>
     </div>
     <div class="input-container">
       @let userNameControl = registerForm.get('username');
@@ -52,12 +45,7 @@
         placeholder="user123"
         class="form-input"
       />
-      @if ((userNameControl?.errors) && (userNameControl?.touched)) {
-      @if(userNameControl?.getError('required')) {
-      <app-input-error-message>Your Username is required </app-input-error-message>
-      }@else if (userNameControl?.getError('minlength')) {
-      <app-input-error-message>Username must be at least 3 characters</app-input-error-message>
-      } }
+      <app-input-error-message [control]="userNameControl"></app-input-error-message>
     </div>
     <div class="input-container">
       @let emailControl = registerForm.get('email');
@@ -71,12 +59,7 @@
         placeholder="user@example.com"
         class="form-input"
       />
-      @if (emailControl?.errors && emailControl?.touched) { @if (emailControl?.getError('required'))
-      {
-      <app-input-error-message>Email is required</app-input-error-message>
-      } @if (emailControl?.getError('email')) {
-      <app-input-error-message>Please enter a valid email address</app-input-error-message>
-      } }
+      <app-input-error-message [control]="emailControl"></app-input-error-message>
     </div>
     <div class="input-container">
       @let phoneControl = registerForm.get('phone');
@@ -105,10 +88,12 @@
       </div>
       @if (phoneControl?.errors && phoneControl?.touched) { @if (phoneControl?.getError('required'))
       {
-      <app-input-error-message>Phone number is required</app-input-error-message>
+      <p class="text-red-600 font-geist pt-[10px] text-[14px]">Phone number is required</p>
       } @if (phoneControl?.getError('pattern')) {
-      <app-input-error-message>Please enter a valid Egyptian phone number</app-input-error-message>
-      } }
+      <p class="text-red-600 font-geist pt-[10px] text-[14px]">
+        Please enter a valid Egyptian phone number
+      </p>
+      }}
     </div>
     <div class="input-container">
       @let passwordControl = registerForm.get('password');
@@ -122,15 +107,7 @@
         placeholder="********"
         class="form-input"
       />
-      @if (passwordControl?.errors && passwordControl?.touched) { @if
-      (passwordControl?.getError('required')) {
-      <app-input-error-message>Password is required</app-input-error-message>
-      } @if (passwordControl?.getError('pattern')) {
-      <app-input-error-message>
-        Password must contain at least 8 characters, including uppercase, lowercase, number, and
-        special character
-      </app-input-error-message>
-      } }
+      <app-input-error-message [control]="passwordControl"></app-input-error-message>
     </div>
     <div class="input-container">
       @let rePasswordControl = registerForm.get('rePassword');
@@ -144,16 +121,13 @@
         placeholder="********"
         class="form-input"
       />
-      @if (rePasswordControl?.errors && rePasswordControl?.touched) {
-      @if(rePasswordControl?.getError('required')) {
-      <app-input-error-message>Password is required</app-input-error-message>
-      }@else if (rePasswordControl?.getError('mismatch')) {
-      <app-input-error-message>Password confirmation is incorrect</app-input-error-message>
-      } }
+      <app-input-error-message [control]="rePasswordControl"></app-input-error-message>
     </div>
     @if (msgError) {
     <app-error-response-msg>{{ msgError }}</app-error-response-msg>
     }
-    <app-register-footer [isLoading]="isLoading"></app-register-footer>
+    <app-auth-footer buttonLabel="Create Account" [isLoading]="isLoading">
+      Already have an account? <a routerLink="/login" class="text-[#155DFC]"> Login </a>
+    </app-auth-footer>
   </form>
 </main>

@@ -4,95 +4,80 @@ import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AuthEndPoint } from './enums/AuthEndPoint';
 import { AuthAPIAdaptorService } from './adaptor/auth-api.adaptor';
+import { AuthAPIResponse } from './interfaces/AuthAPIResponse ';
+import { AUTH_LIB_CONFIG } from './auth-config';
+import { AuthModel } from './interfaces/AuthModel';
+import { ChangePasswordRequest, EditProfileRequest, ForgotPasswordRequest, ResetPasswordRequest, SignInRequest, SignUpRequest, VerifyResetCodeRequest } from './interfaces/inputs';
 
 @Injectable({
    providedIn:'root'
 })
 export class AuthService implements AuthAPI {
 
-   httpClient = inject(HttpClient)
-   authAPIAdaptorService =inject(AuthAPIAdaptorService)
+   private httpClient = inject(HttpClient)
+   private authAPIAdaptorService =inject(AuthAPIAdaptorService)
+   private authEndpoints = inject(AuthEndPoint);
 
-  private get token() {
-  return localStorage.getItem('token');
-}
-
-  signUp(data: any): Observable<any> {
-      return this.httpClient.post(AuthEndPoint.signUp , data).
-      pipe(map((res => this.authAPIAdaptorService.adapt(res))),
+  signUp(data: Partial<SignUpRequest>): Observable<AuthModel> {
+      return this.httpClient.post(this.authEndpoints.signUp , data).
+      pipe(map((res => this.authAPIAdaptorService.adapt(res as AuthAPIResponse))),
       catchError(err => throwError(() => err))
    )
   }
-    signIn(data: any): Observable<any> {
-      return this.httpClient.post(AuthEndPoint.signIn , data).
-      pipe(map((res => this.authAPIAdaptorService.adapt(res))),
+
+    signIn(data: Partial<SignInRequest>): Observable<AuthModel> {
+      return this.httpClient.post(this.authEndpoints.signIn , data).
+      pipe(map((res => this.authAPIAdaptorService.adapt(res as AuthAPIResponse))),
       catchError(err => throwError(() => err))
 )
   }
-    changePassword(data: any): Observable<any> {
-      return this.httpClient.patch(AuthEndPoint.changePassword , data ,{
-        headers:{
-        Authorization: `Bearer ${this.token}`
-        }
-      }).pipe(map((res => this.authAPIAdaptorService.adapt(res))),
+    changePassword(data: Partial<ChangePasswordRequest>): Observable<AuthModel> {
+      return this.httpClient.patch(this.authEndpoints.changePassword , data).pipe(map((res => this.authAPIAdaptorService.adapt(res as AuthAPIResponse))),
          catchError(err => throwError(() => err))
 )
   }
-deleteMyAccount(): Observable<any> {
-  return this.httpClient.delete(AuthEndPoint.deleteMyAccount, {
-    headers: {
-      Authorization: `Bearer ${this.token}`
-    }
-  }).pipe(
-    map(res => this.authAPIAdaptorService.adapt(res)),
+deleteMyAccount(): Observable<AuthModel> {
+  return this.httpClient.delete(this.authEndpoints.deleteMyAccount).pipe(
+    map(res => this.authAPIAdaptorService.adapt(res as AuthAPIResponse)),
     catchError(err => throwError(() => err))
   );
 }
 
-    editProfile(data: any): Observable<any> {
-      return this.httpClient.put(AuthEndPoint.editProfile , data ,{
-        headers:{
-        Authorization: `Bearer ${this.token}`
-        }}).
-      pipe(map((res => this.authAPIAdaptorService.adapt(res))),      
+    editProfile(data: Partial<EditProfileRequest>): Observable<AuthModel> {
+      return this.httpClient.put(this.authEndpoints.editProfile , data).
+      pipe(map((res => this.authAPIAdaptorService.adapt(res as AuthAPIResponse))),      
       catchError(err => throwError(() => err))
 )
   }
-logOut(): Observable<any> {
-  return this.httpClient.get(AuthEndPoint.logOut, {
-    headers:{ Authorization: `Bearer ${this.token}` }
-  }).pipe(
-    map(res => {
-      localStorage.removeItem('token');
-      return this.authAPIAdaptorService.adapt(res);
-    }),
+logOut(): Observable<AuthModel> {
+  return this.httpClient.get(this.authEndpoints.logOut).pipe(
+    map(res => this.authAPIAdaptorService.adapt(res as AuthAPIResponse)
+    ),
     catchError(err => throwError(() => err))
   );
 }
 
-getLoggedUserInfo(): Observable<any> {
-  return this.httpClient.get(AuthEndPoint.getLoggedUserInfo , {
-    headers:{ Authorization: `Bearer ${this.token}` }
-  }).pipe(
-    map(res => this.authAPIAdaptorService.adapt(res)),
+getLoggedUserInfo(): Observable<AuthModel> {
+  return this.httpClient.get(this.authEndpoints.getLoggedUserInfo).pipe(
+    map(res => this.authAPIAdaptorService.adapt(res as AuthAPIResponse)),
     catchError(err => throwError(() => err))
   );
 }
-    forgotPassword(data: any): Observable<any> {
-      return this.httpClient.post(AuthEndPoint.forgotPassword , data).
-      pipe(map((res => this.authAPIAdaptorService.adapt(res))),      
+    forgotPassword(data: Partial<ForgotPasswordRequest>): Observable<AuthModel> {
+      return this.httpClient.post(this.authEndpoints.forgotPassword , data).
+      pipe(map((res => this.authAPIAdaptorService.adapt(res as AuthAPIResponse))),      
       catchError(err => throwError(() => err))
 )
   }
-    verifyResetCode(data: any): Observable<any> {
-      return this.httpClient.post(AuthEndPoint.verifyResetCode , data).
-      pipe(map((res => this.authAPIAdaptorService.adapt(res))),      
+    verifyResetCode(data: Partial<VerifyResetCodeRequest>): Observable<AuthModel> {
+      return this.httpClient.post(this.authEndpoints.verifyResetCode , data).
+      pipe(map((res => this.authAPIAdaptorService.adapt(res as AuthAPIResponse))),      
       catchError(err => throwError(() => err))
 )
   }
-    resetPassword(data: any): Observable<any> {
-      return this.httpClient.put(AuthEndPoint.resetPassword , data).
-      pipe(map((res => this.authAPIAdaptorService.adapt(res))),      
+    resetPassword(data: Partial<ResetPasswordRequest>): Observable<AuthModel> {
+      return this.httpClient.put(this.authEndpoints.resetPassword , data).
+      pipe(map((res => this.authAPIAdaptorService.adapt(res as AuthAPIResponse))),      
       catchError(err => throwError(() => err))
 )
   }

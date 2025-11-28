@@ -1,15 +1,20 @@
+import { inject, Injectable } from "@angular/core";
+import { AUTH_LIB_CONFIG } from "../auth-config";
 
-export class AuthEndPoint{
-    static readonly baseURL = 'https://exam.elevateegy.com/api/v1/auth';
+@Injectable({ providedIn: 'root' })
+export class AuthEndPoint {
 
-    static readonly signUp = `${this.baseURL}/signup`
-    static readonly signIn = `${this.baseURL}/signin`
-    static readonly changePassword = `${this.baseURL}/changePassword`
-    static readonly deleteMyAccount = `${this.baseURL}/deleteMe`
-    static readonly editProfile = `${this.baseURL}/editProfile`
-    static readonly logOut = `${this.baseURL}/logout`
-    static readonly getLoggedUserInfo = `${this.baseURL}/profileData`
-    static readonly forgotPassword = `${this.baseURL}/forgotPassword`
-    static readonly verifyResetCode = `${this.baseURL}/verifyResetCode`
-    static readonly resetPassword = `${this.baseURL}/resetPassword`
+  private readonly config = inject(AUTH_LIB_CONFIG);
+  private readonly base = this.config.apiUrl;
+
+  readonly signUp = `${this.base}/signup`;
+  readonly signIn = `${this.base}/signin`;
+  readonly changePassword = `${this.base}/changePassword`;
+  readonly deleteMyAccount = `${this.base}/deleteMe`;
+  readonly editProfile = `${this.base}/editProfile`;
+  readonly logOut = `${this.base}/logout`;
+  readonly getLoggedUserInfo = `${this.base}/profileData`;
+  readonly forgotPassword = `${this.base}/forgotPassword`;
+  readonly verifyResetCode = `${this.base}/verifyResetCode`;
+  readonly resetPassword = `${this.base}/resetPassword`;
 }

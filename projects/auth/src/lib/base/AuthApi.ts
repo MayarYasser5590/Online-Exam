@@ -1,14 +1,16 @@
 import { Observable } from "rxjs";
+import { AuthModel } from "../interfaces/AuthModel";
+import { ChangePasswordRequest, EditProfileRequest, ForgotPasswordRequest, ResetPasswordRequest, SignInRequest, SignUpRequest, VerifyResetCodeRequest } from "../interfaces/inputs";
 
 export abstract class AuthAPI{
-    abstract signIn(data:any) : Observable<any>;
-    abstract signUp(data:any) : Observable<any>;
-    abstract changePassword(data:any) : Observable<any>;
-    abstract deleteMyAccount() : Observable<any>;
-    abstract editProfile(data:any) : Observable<any>;
-    abstract logOut() : Observable<any>;
-    abstract getLoggedUserInfo() : Observable<any>;
-    abstract forgotPassword(data:any) : Observable<any>;
-    abstract verifyResetCode(data:any) : Observable<any>;
-    abstract resetPassword(data:any) : Observable<any>;                 
+    abstract signIn(data:SignInRequest) : Observable<AuthModel>;
+    abstract signUp(data:SignUpRequest) : Observable<AuthModel>;
+    abstract changePassword(data:ChangePasswordRequest) : Observable<AuthModel>;
+    abstract deleteMyAccount() : Observable<AuthModel>;
+    abstract editProfile(data:EditProfileRequest) : Observable<AuthModel>;
+    abstract logOut() : Observable<AuthModel>;
+    abstract getLoggedUserInfo() : Observable<AuthModel>;
+    abstract forgotPassword(data:ForgotPasswordRequest) : Observable<AuthModel>;
+    abstract verifyResetCode(data:VerifyResetCodeRequest) : Observable<AuthModel>;
+    abstract resetPassword(data:ResetPasswordRequest) : Observable<AuthModel>;                 
 }

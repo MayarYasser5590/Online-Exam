@@ -13,12 +13,7 @@
         placeholder="user@example.com"
         class="form-input"
       />
-      @if (emailControl?.errors && emailControl?.touched) { @if (emailControl?.getError('required'))
-      {
-      <app-input-error-message>Email is required</app-input-error-message>
-      } @if (emailControl?.getError('email')) {
-      <app-input-error-message>Please enter a valid email address</app-input-error-message>
-      } }
+      <app-input-error-message [control]="emailControl"></app-input-error-message>
     </div>
     <div class="flex flex-col">
       @let passwordControl = loginForm.get('password');
@@ -37,23 +32,13 @@
         class="self-end font-inter pt-[10px] font-medium text-[14px] leading-[100%] tracking-[0px] text-[#155DFC]"
         >Forgot your password?</a
       >
-      @if (passwordControl?.errors && passwordControl?.touched) {
-      @if(passwordControl?.getError('required')) {
-      <app-input-error-message>Password is required</app-input-error-message>
-      }}
+      <app-input-error-message [control]="passwordControl"></app-input-error-message>
     </div>
     @if (msgError) {
     <app-error-response-msg>{{ msgError }}</app-error-response-msg>
     }
-    <div class="pt-9 auth-footer-container">
-      <app-main-button
-        >Login @if (isLoading) {
-        <span><i class="fas fa-spin fa-spinner text-white"></i></span>
-        }
-      </app-main-button>
-      <p class="form-end-ques">
-        Don’t have an account?<a routerLink="/register" class="text-[#155DFC]"> Create yours</a>
-      </p>
-    </div>
+    <app-auth-footer buttonLabel="Login" [isLoading]="isLoading">
+      Don’t have an account? <a routerLink="/register" class="text-[#155DFC]"> Create yours </a>
+    </app-auth-footer>
   </form>
 </main>

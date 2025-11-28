@@ -6,22 +6,23 @@ import { ReactiveFormsModule, FormControl, FormGroup, Validators } from '@angula
 import { RouterLink } from "@angular/router";
 import { HttpErrorResponse } from '@angular/common/http';
 import { InputErrorMessage } from "../../components/ui/input-error-message/input-error-message";
-import { ErrorResponseMsg } from "../../components/ui/error-response-msg/error-response-msg";
 import { EmailService } from '../../services/email';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-request-reset-email',
   standalone: true,
-  imports: [Header, MainButton, ReactiveFormsModule, RouterLink, InputErrorMessage, ErrorResponseMsg],
+  imports: [Header, MainButton, ReactiveFormsModule, RouterLink, InputErrorMessage],
   templateUrl: './request-reset-email.html',
   styleUrl: './request-reset-email.scss',
 })
-export class RequestResetEmail{
+export class RequestResetEmail implements OnDestroy {
   @Output() continue = new EventEmitter<void>();
   private readonly authService = inject(AuthService);
   private readonly emailService = inject(EmailService)
   msgError: string = '';
   isLoading = false;
+  requestResetEmailSubscribe : Subscription = new Subscription();
 
   forgetPassForm = new FormGroup({
     email: new FormControl(null , [Validators.required , Validators.email]),
@@ -31,8 +32,8 @@ export class RequestResetEmail{
     if (this.forgetPassForm.valid) {
     this.isLoading = true;
     const email: string = this.forgetPassForm.get('email')?.value ?? '';
-    this.emailService.email = email;
-    this.authService.forgotPassword(this.forgetPassForm.value).subscribe({
+    this.emailService.setEmail(this.forgetPassForm.value.email!);
+   this.requestResetEmailSubscribe = this.authService.forgotPassword(this.forgetPassForm.value).subscribe({
       next: (res) => {
             this.isLoading = false;
          if(res.message === 'success'){
@@ -47,4 +48,7 @@ export class RequestResetEmail{
   }
   }
 
+   ngOnDestroy(): void {
+     this.requestResetEmailSubscribe.unsubscribe()
+ }
 }
