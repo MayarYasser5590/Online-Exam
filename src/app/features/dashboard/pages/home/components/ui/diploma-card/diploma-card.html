@@ -1,0 +1,15 @@
+<div>
+  <div class="relative inline-block h-[448px] overflow-hidden">
+    <img class="w-full h-full object-cover" [src]="image()" [alt]="alt()" />
+
+    <div
+      class="absolute bottom-2 w-[94%] text-center mx-auto left-0 right-0 bg-[#155DFC]/50 backdrop-blur-[6px] p-4"
+    >
+      <h3
+        class="text-white font-geist font-semibold text-[20px] leading-[100%] tracking-[0] align-middle"
+      >
+        {{ title() }}
+      </h3>
+    </div>
+  </div>
+</div>

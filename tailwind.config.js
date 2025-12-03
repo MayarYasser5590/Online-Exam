@@ -7,6 +7,11 @@ module.exports = {
         geist: ['"Geist Mono"', 'monospace'],
         inter: ['"Inter"', 'sans-serif'],
       },
+      colors: {
+        main: {
+          DEFAULT: '#155DFC',
+        },
+      },
     },
   },
   plugins: [require('flowbite/plugin')],

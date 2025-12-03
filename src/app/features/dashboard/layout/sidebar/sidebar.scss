@@ -1,0 +1,23 @@
+.sidebar-container {
+  @apply h-full flex flex-col flex-1 overflow-y-auto;
+}
+
+.sidebar-link {
+  @apply flex items-center gap-[10px] text-gray-500 p-1 md:p-3 lg:p-4;
+}
+
+.text-base-style {
+  @apply font-geist font-normal leading-[100%] tracking-[0];
+}
+
+.username {
+  @apply font-geist font-medium leading-[100%] tracking-[0] text-[#155DFC];
+}
+
+.dropdown-item {
+  @apply flex items-center gap-[10px] leading-[100%] font-geist  text-xs sm:text-sm  align-middle font-normal tracking-[0] p-2 sm:p-4;
+}
+
+.avatar-img {
+  @apply w-8 h-8 sm:w-12 sm:h-12 lg:w-[54px] lg:h-[54px];
+}

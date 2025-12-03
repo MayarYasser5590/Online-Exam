@@ -1,0 +1,32 @@
+<app-dashboard-pages-container>
+  <div class="flex gap-[10px]">
+    <app-back></app-back>
+    <app-dashboard-header
+      class="flex-1"
+      icon="/assets/book-open-check-white.png"
+      title="Exams"
+    ></app-dashboard-header>
+  </div>
+  <div class="bg-white mt-2 md:mt-4 p-6">
+    <app-exam-header
+      titleInput="CSS Quiz"
+      questionsInput="25"
+      durationInput="20 minutes"
+    ></app-exam-header>
+    <app-exam-header
+      titleInput="Bootstrap Quiz"
+      questionsInput="25"
+      durationInput="20 minutes"
+    ></app-exam-header>
+    <app-exam-header
+      titleInput="Tailwind Quiz"
+      questionsInput="25"
+      durationInput="20 minutes"
+    ></app-exam-header>
+    <app-exam-header
+      titleInput="React Quiz"
+      questionsInput="25"
+      durationInput="20 minutes"
+    ></app-exam-header>
+  </div>
+</app-dashboard-pages-container>

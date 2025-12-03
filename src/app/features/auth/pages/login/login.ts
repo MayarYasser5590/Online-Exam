@@ -33,13 +33,13 @@ loginForm: FormGroup = new FormGroup({
     this.isLoading = true;
    this.loginSubscribe = this.authService.signIn(this.loginForm.value).subscribe({
       next: (res) => {
-            if (res.token) {
-  localStorage.setItem('token', res.token);
-} else {
-  console.warn('No token');
-}
     if(res.message === 'success'){
-      // this.router.navigate(['/home']);
+      if (res.token) {
+          localStorage.setItem('token', res.token);
+      }
+      this.router.navigate(['/home']);
+      console.log("yes");
+      
     }
     this.isLoading = false;
       },
