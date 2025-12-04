@@ -9,6 +9,7 @@ import { ErrorResponseMsg } from "../../components/ui/error-response-msg/error-r
 import { Subscription } from 'rxjs';
 import { AuthFooterComponent } from "../../components/ui/auth-footer/auth-footer";
 import { PASSWORD_PATTERN } from '../../components/business/pass-regex';
+import { confirmPasswordValidator } from '../../components/business/confirm-password.validator';
 @Component({
   selector: 'app-register',
   imports: [Header, ReactiveFormsModule, RouterLink , InputErrorMessage, ErrorResponseMsg, AuthFooterComponent],
@@ -30,27 +31,9 @@ export class Register implements OnDestroy {
     phone: new FormControl(null , [Validators.required , Validators.pattern(/^01[0125][0-9]{8}$/)]),
     password: new FormControl(null , [Validators.required , Validators.pattern(PASSWORD_PATTERN)]),
     rePassword: new FormControl(null , [Validators.required]),
- } , {validators : this.confirmPassword})
+ } , {validators: confirmPasswordValidator('password', 'rePassword')
+})
 
-confirmPassword(group: AbstractControl) {
-  const password = group.get('password');
-  const rePassword = group.get('rePassword');
-
-  if (!password || !rePassword) return null;
-
-  if (rePassword.value !== password.value) {
-    rePassword.setErrors({ mismatch: true });
-    return { mismatch: true };
-  } else {
-    if (rePassword.errors) {
-      delete rePassword.errors['mismatch'];
-      if (Object.keys(rePassword.errors).length === 0) {
-        rePassword.setErrors(null);
-      }
-    }
-    return null;
-  }
-}
  submitRegisterForm(){
   if (this.registerForm.valid) {
     this.isLoading = true;

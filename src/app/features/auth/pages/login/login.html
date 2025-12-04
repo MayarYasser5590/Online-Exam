@@ -32,7 +32,8 @@
         class="self-end font-inter pt-[10px] font-medium text-[14px] leading-[100%] tracking-[0px] text-[#155DFC]"
         >Forgot your password?</a
       >
-      <app-input-error-message [control]="passwordControl"></app-input-error-message>
+      <app-input-error-message [control]="passwordControl" fieldName="password">
+      </app-input-error-message>
     </div>
     @if (msgError) {
     <app-error-response-msg>{{ msgError }}</app-error-response-msg>

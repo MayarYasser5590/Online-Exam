@@ -86,14 +86,8 @@
           class="form-input grow"
         />
       </div>
-      @if (phoneControl?.errors && phoneControl?.touched) { @if (phoneControl?.getError('required'))
-      {
-      <p class="text-red-600 font-geist pt-[10px] text-[14px]">Phone number is required</p>
-      } @if (phoneControl?.getError('pattern')) {
-      <p class="text-red-600 font-geist pt-[10px] text-[14px]">
-        Please enter a valid Egyptian phone number
-      </p>
-      }}
+      <app-input-error-message [control]="phoneControl" fieldName="phone">
+      </app-input-error-message>
     </div>
     <div class="input-container">
       @let passwordControl = registerForm.get('password');
@@ -107,7 +101,8 @@
         placeholder="********"
         class="form-input"
       />
-      <app-input-error-message [control]="passwordControl"></app-input-error-message>
+      <app-input-error-message [control]="passwordControl" fieldName="password">
+      </app-input-error-message>
     </div>
     <div class="input-container">
       @let rePasswordControl = registerForm.get('rePassword');
@@ -121,7 +116,8 @@
         placeholder="********"
         class="form-input"
       />
-      <app-input-error-message [control]="rePasswordControl"></app-input-error-message>
+      <app-input-error-message [control]="rePasswordControl" fieldName="password">
+      </app-input-error-message>
     </div>
     @if (msgError) {
     <app-error-response-msg>{{ msgError }}</app-error-response-msg>

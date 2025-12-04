@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 import { AuthFooterComponent } from "../../components/ui/auth-footer/auth-footer";
 import { PASSWORD_PATTERN } from '../../components/business/pass-regex';
 import { EmailService } from '../../services/email';
+import { confirmPasswordValidator } from '../../components/business/confirm-password.validator';
 
 @Component({
   selector: 'app-reset-password',
@@ -37,27 +38,8 @@ ngOnInit() {
   resetPassForm = new FormGroup({
     newPassword: new FormControl(null  , [Validators.required , Validators.pattern(PASSWORD_PATTERN)]),
     rePassword: new FormControl(null , [Validators.required]),
-  }, {validators : this.confirmPassword});
+  }, {validators: confirmPasswordValidator('newPassword', 'rePassword')});
 
-confirmPassword(group: AbstractControl) {
-  const password = group.get('newPassword');
-  const rePassword = group.get('rePassword');
-
-  if (!password || !rePassword) return null;
-
-  if (rePassword.value !== password.value) {
-    rePassword.setErrors({ mismatch: true });
-    return { mismatch: true };
-  } else {
-    if (rePassword.errors) {
-      delete rePassword.errors['mismatch'];
-      if (Object.keys(rePassword.errors).length === 0) {
-        rePassword.setErrors(null);
-      }
-    }
-    return null;
-  }
-}
 
   submitResetPassForm() {
 

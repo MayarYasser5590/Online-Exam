@@ -11,6 +11,8 @@ import { AbstractControl, ReactiveFormsModule } from '@angular/forms';
 export class InputErrorMessage {
   
   @Input() control!: AbstractControl | null;
+  @Input() fieldName: string = '';
+
 
   get showError(): boolean {
     return !!this.control && this.control.touched && this.control.invalid;
@@ -27,8 +29,15 @@ export class InputErrorMessage {
       return `Minimum length is ${errors['minlength'].requiredLength}`;
     if (errors['maxlength'])
       return `Maximum length is ${errors['maxlength'].requiredLength}`;
-    if (errors['pattern'])
+
+    if (errors['pattern']) {
+    if (this.fieldName === 'password')
       return 'Password must contain at least 8 characters, including uppercase, lowercase, number, and special character';
+
+    if (this.fieldName === 'phone')
+      return 'Please enter a valid Egyptian phone number';
+  }
+
     if (errors['mismatch'])
       return 'Password confirmation is incorrect';
 
