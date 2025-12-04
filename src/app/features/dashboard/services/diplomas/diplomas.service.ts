@@ -14,8 +14,6 @@ export class DiplomasService {
 
 getAllSubjects():Observable<any>{
   return this.httpClient.get(`${this.baseUrl}/subjects`)
-  console.log("Diploma service http:", this.httpClient);
-
 }
 }
 
