@@ -1,0 +1,45 @@
+<section class="w-full max-w-full overflow-y-auto overflow-x-hidden">
+  <form class="w-full max-w-full" [formGroup]="profileForm" (ngSubmit)="submitProfile()">
+    <div class="fullName mb-[10px] w-full max-w-full">
+      <div class="flex gap-1 md:gap-[10px] w-full max-w-full">
+        <div class="flex flex-col grow w-full">
+          <label class="account-label">First name</label>
+          <input type="text" formControlName="firstName" class="account-input w-full" />
+        </div>
+
+        <div class="flex flex-col grow w-full">
+          <label class="account-label">Last name</label>
+          <input type="text" formControlName="lastName" class="account-input w-full" />
+        </div>
+      </div>
+    </div>
+
+    <div class="input-container w-full max-w-full">
+      <label class="account-label">Username</label>
+      <input formControlName="username" type="text" class="account-input w-full" />
+    </div>
+
+    <div class="input-container w-full max-w-full">
+      <label class="account-label">Email</label>
+      <input formControlName="email" type="email" class="account-input w-full" />
+    </div>
+
+    <div class="input-container w-full max-w-full">
+      <label class="account-label">Phone</label>
+      <div
+        class="flex items-center border border-[#E5E7EB] ps-[7px] md:ps-[10px] gap-2 w-full max-w-full"
+      >
+        <img src="/assets/flag.png" class="w-4 h-4 md:w-[23px] md:h-[16px]" />
+        <span class="text-gray-300 text-[8px] md:text-[12px]">EG (+20)</span>
+        <input type="tel" formControlName="phone" class="grow account-input" />
+      </div>
+    </div>
+
+    <div
+      class="flex justify-center text-[10px] md:text-[14px] gap-[10px] pt-4 items-center w-full max-w-full"
+    >
+      <button class="text-red-600 py-2 md:py-4 w-full bg-red-50">Delete My Account</button>
+      <button class="text-white py-2 md:py-4 w-full bg-main">Save Changes</button>
+    </div>
+  </form>
+</section>

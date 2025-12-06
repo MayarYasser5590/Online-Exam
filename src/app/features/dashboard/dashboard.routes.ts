@@ -3,6 +3,7 @@ import { DashboardLayout } from './layout/dashboard-layout/dashboard-layout';
 import { Home } from './pages/home/home';
 import { authGuard } from '../../core/guards/auth/auth-guard';
 import { Exams } from './pages/exams/exams';
+import { AccountSettings } from './pages/account-settings/account-settings';
 
 export const dashboardRoutes: Routes = [
   {
@@ -10,7 +11,8 @@ export const dashboardRoutes: Routes = [
   children:[
          {path:'' , redirectTo:'diplomas' , pathMatch:'full'},
          {path:'home' , component:Home , title:'Home'},
-         {path:'exams' , component:Exams , title:'Exams'}
+         {path:'exams' , component:Exams , title:'Exams'},
+         {path:'account' , component:AccountSettings , title:'Account'}
      ]
   }
 ];

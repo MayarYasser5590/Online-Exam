@@ -1,10 +1,10 @@
 <main
-  class="grid grid-cols-[208px_1fr] sm:grid-cols-[288px_1fr] md:grid-cols-[300px_1fr] lg:grid-cols-[362px_1fr] min-h-screen"
+  class="grid grid-cols-[0px_1fr] sm:grid-cols-[288px_1fr] md:grid-cols-[300px_1fr] lg:grid-cols-[362px_1fr] min-h-screen"
 >
   <div>
-    <app-sidebar></app-sidebar>
+    <app-sidebar class="hidden sm:block"></app-sidebar>
   </div>
-  <div class="overflow-auto">
+  <div class="overflow-y-auto">
     <router-outlet></router-outlet>
   </div>
 </main>

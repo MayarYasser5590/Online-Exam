@@ -11,4 +11,6 @@ export interface AuthModel {
   isVerified?: boolean;
   id?: string;
   createdAt?: string;
+  phone?: string;
+
 }

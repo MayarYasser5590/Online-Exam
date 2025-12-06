@@ -10,7 +10,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([authInterceptor]) , withFetch()),
+    provideHttpClient(withFetch() , withInterceptors([authInterceptor])),
     {
       provide: AUTH_LIB_CONFIG,
       useValue: {

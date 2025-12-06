@@ -2,7 +2,6 @@ import { Component, Input, signal } from '@angular/core';
 
 @Component({
   selector: 'app-diploma-card',
-  imports: [],
   templateUrl: './diploma-card.html',
   styleUrl: './diploma-card.scss',
 })
