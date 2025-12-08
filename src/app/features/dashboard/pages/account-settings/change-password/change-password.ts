@@ -20,6 +20,8 @@ export class ChangePassword {
     private readonly authService = inject(AuthService);
     msgError: string = '';
     isLoading = false;
+    isSuccess :string = ''
+    private readonly router = inject(Router);
     changePassSubscribe : Subscription = new Subscription();
 
 
@@ -38,7 +40,13 @@ export class ChangePassword {
       next: (res) => {
         if(res.message === 'success'){
          console.log(res);
-         
+         this.isSuccess = "Password changed successfully. Please log in again.";
+         if (res.token) {
+            localStorage.removeItem('token');
+          }
+        setTimeout(() => {
+            this.router.navigate(['/login']);
+          }, 3000);
     }
       this.isLoading = false;
       },

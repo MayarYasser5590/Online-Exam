@@ -1,5 +1,5 @@
 <section class="w-full max-w-full overflow-y-auto overflow-x-hidden">
-  <form class="w-full max-w-full" [formGroup]="profileForm" (ngSubmit)="submitProfile()">
+  <form class="w-full max-w-full" [formGroup]="profileForm">
     <div class="fullName mb-[10px] w-full max-w-full">
       <div class="flex gap-1 md:gap-[10px] w-full max-w-full">
         <div class="flex flex-col grow w-full">
@@ -38,8 +38,15 @@
     <div
       class="flex justify-center text-[10px] md:text-[14px] gap-[10px] pt-4 items-center w-full max-w-full"
     >
-      <button class="text-red-600 py-2 md:py-4 w-full bg-red-50">Delete My Account</button>
-      <button class="text-white py-2 md:py-4 w-full bg-main">Save Changes</button>
+      <button (click)="deleteMyAccount()" class="text-red-600 py-2 md:py-4 w-full bg-red-50">
+        Delete My Account
+      </button>
+      <button (click)="submitProfile()" class="text-white py-2 md:py-4 w-full bg-main">
+        Save Changes
+      </button>
     </div>
+    @if (msgError) {
+    <app-error-response-msg>{{ msgError }}</app-error-response-msg>
+    }
   </form>
 </section>

@@ -18,7 +18,7 @@ export class Sidebar implements AfterViewInit {
     initFlowbite(); 
   }
 
-  login(){
+  logOut(){
     this.authService.logOut().subscribe({
       next:(res)=>{
         console.log(res);
@@ -29,9 +29,5 @@ export class Sidebar implements AfterViewInit {
         
       }
     })
-  }
-  logOut(){
-     localStorage.removeItem('token');
-    this.router.navigate(['/login']);
   }
 }

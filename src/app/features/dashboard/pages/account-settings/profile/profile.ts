@@ -2,11 +2,12 @@ import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../../../../../../../projects/auth/src/public-api';
+import { ErrorResponseMsg } from "../../../../auth/components/ui/error-response-msg/error-response-msg";
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ErrorResponseMsg],
   templateUrl: './profile.html',
   styleUrl: './profile.scss'
 })
@@ -15,8 +16,8 @@ export class Profile implements OnInit {
     @Output() continue = new EventEmitter<void>();
   private readonly authService = inject(AuthService)
 
-  isLoading = false;
-  msgError = '';
+  isLoading : boolean = false;
+  msgError : string = '';
 
   profileForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
@@ -56,15 +57,23 @@ export class Profile implements OnInit {
       return;
     }
 
-    this.authService.editProfile(this.profileForm.value).subscribe({
+    this.editProfile();
+  }
+
+  deleteMyAccount(){
+    this.authService.deleteMyAccount();
+  }
+
+  editProfile(){
+ this.authService.editProfile(this.profileForm.value).subscribe({
       next: (res) => {
         console.log('Updated:', res);
       },
       error: (err: HttpErrorResponse) => {
-        this.msgError = err.error.message;
+        this.msgError = 'failed .. please try again later';
         console.log(this.msgError);
         
       }
     })
-  }
+}
 }
