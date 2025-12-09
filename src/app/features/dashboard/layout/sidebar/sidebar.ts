@@ -14,6 +14,7 @@ import { Subscription } from 'rxjs';
 export class Sidebar implements OnInit , AfterViewInit , OnDestroy {
   readonly authService = inject(AuthService);
   userInfo : AuthModel = {} 
+  private readonly router = inject(Router);
   userInfoSubscribe : Subscription = new Subscription();
   logOutSubscribe : Subscription = new Subscription();
 
@@ -36,7 +37,11 @@ export class Sidebar implements OnInit , AfterViewInit , OnDestroy {
   logOut(){
     this.logOutSubscribe = this.authService.logOut().subscribe({
       next:(res)=>{
-        console.log(res);
+           if(res.message === 'success'){
+          localStorage.removeItem('token');
+          this.router.navigate(['/login']);
+
+      }
       },
       error:(err) =>{
         console.log(err);

@@ -24,7 +24,6 @@ getAllDiplomas(){
   this.diplomaSubscribe = this.diplomaService.getAllSubjects().subscribe({
     next:(res)=>{
    this.diplomas = res.subjects;
-   console.log(this.diplomas);
     }
   })
 }

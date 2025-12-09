@@ -35,12 +35,9 @@ loginForm: FormGroup = new FormGroup({
       next: (res) => {
     if(res.message === 'success'){
       if (res.token) {
-        console.log("Token from server:", res.token);
           localStorage.setItem('token', res.token);
       }
-      this.router.navigate(['/home']);
-      console.log("yes");
-      
+      this.router.navigate(['/home']);      
     }
     this.isLoading = false;
       },

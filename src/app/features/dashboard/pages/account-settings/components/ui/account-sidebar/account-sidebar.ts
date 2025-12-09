@@ -26,12 +26,14 @@ go(step: 'profile' | 'changePass') {
   logOut(){
     this.logOutSubscribe = this.authService.logOut().subscribe({
       next:(res)=>{
-        console.log(res);
-        
+           if(res.message === 'success'){
+          localStorage.removeItem('token');
+          this.router.navigate(['/login']);
+
+      }
       },
       error:(err) =>{
         console.log(err);
-        
       }
     })
   }
