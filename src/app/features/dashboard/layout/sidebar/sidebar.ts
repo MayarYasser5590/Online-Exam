@@ -1,7 +1,9 @@
-import { Component, AfterViewInit, inject } from '@angular/core';
+import { Component, AfterViewInit, inject, OnInit, OnDestroy } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from "@angular/router";
 import { initFlowbite } from 'flowbite';
 import { AuthService } from '../../../../../../projects/auth/src/lib/auth.service';
+import { AuthModel } from '../../../../../../projects/auth/src/lib/interfaces/AuthModel';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,25 +11,41 @@ import { AuthService } from '../../../../../../projects/auth/src/lib/auth.servic
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
 })
-export class Sidebar implements AfterViewInit {
-  private readonly router = inject(Router);
+export class Sidebar implements OnInit , AfterViewInit , OnDestroy {
   readonly authService = inject(AuthService);
-  
+  userInfo : AuthModel = {} 
+  userInfoSubscribe : Subscription = new Subscription();
+  logOutSubscribe : Subscription = new Subscription();
+
+  ngOnInit(): void {
+    this.getLoggedUserInfo()
+  }
 
   ngAfterViewInit() {
     initFlowbite(); 
   }
 
-  logOut(){
-    this.authService.logOut().subscribe({
-      next:(res)=>{
-        console.log(res);
-        
-      },
-      error:(err) =>{
-        console.log(err);
-        
+  getLoggedUserInfo(){
+    this.userInfoSubscribe = this.authService.getLoggedUserInfo().subscribe({
+      next:(res) => {
+        this.userInfo = res;
       }
     })
   }
+
+  logOut(){
+    this.logOutSubscribe = this.authService.logOut().subscribe({
+      next:(res)=>{
+        console.log(res);
+      },
+      error:(err) =>{
+        console.log(err);
+      }
+    })
+  }
+
+   ngOnDestroy(): void {
+     this.userInfoSubscribe.unsubscribe();
+     this.logOutSubscribe.unsubscribe();
+ }
 }

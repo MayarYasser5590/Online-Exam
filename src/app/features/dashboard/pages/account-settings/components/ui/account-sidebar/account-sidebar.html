@@ -1,4 +1,4 @@
-<div class="flex flex-col h-full p-3 md:p-6 justify-between">
+<div class="flex flex-col h-full p-1 sm:p-2 lg:p-6 justify-between">
   <div>
     <ul
       class="space-y-2 font-geist text-[8px] md:text-xs lg:text-base font-normal align-middle tracking-normal leading-none"
@@ -9,7 +9,7 @@
           [class.sidebar-link-active]="currentStep === 'profile'"
           class="sidebar-link text-gray-500"
         >
-          <img class="w-4 h-4 md:w-6 md:h-6" src="/assets/circle-user-round.png" alt="Profile" />
+          <img class="w-2 h-2 lg:w-6 lg:h-6" src="/assets/circle-user-round.png" alt="Profile" />
           <span class="flex-1 whitespace-nowrap">Profile</span>
         </button>
       </li>
@@ -19,7 +19,7 @@
           [class.sidebar-link-active]="currentStep === 'changePass'"
           class="sidebar-link text-gray-500"
         >
-          <img class="w-4 h-4 md:w-6 md:h-6" src="/assets/lock.png" alt="Change Password" />
+          <img class="w-2 h-2 lg:w-6 lg:h-6" src="/assets/lock.png" alt="Change Password" />
           <span class="flex-1 whitespace-nowrap">Change Password</span>
         </button>
       </li>
@@ -30,7 +30,7 @@
       class="font-geist text-xs lg:text-base font-normal align-middle tracking-normal leading-none"
     >
       <li>
-        <button class="text-[#DC2626] w-full sidebar-link bg-red-50">
+        <button (click)="logOut()" class="text-[#DC2626] w-full sidebar-link bg-red-50">
           <img class="w-[18px] h-[18px]" src="/assets/log-out.png" alt="User Account" />
           <a class="whitespace-nowrap">Logout</a>
         </button>

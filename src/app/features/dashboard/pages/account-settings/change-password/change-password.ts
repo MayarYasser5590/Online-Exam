@@ -39,7 +39,6 @@ export class ChangePassword {
     this.changePassSubscribe = this.authService.changePassword(this.changePasswordForm.value).subscribe({
       next: (res) => {
         if(res.message === 'success'){
-         console.log(res);
          this.isSuccess = "Password changed successfully. Please log in again.";
          if (res.token) {
             localStorage.removeItem('token');
@@ -52,9 +51,7 @@ export class ChangePassword {
       },
       error: (err : HttpErrorResponse) => {
         this.isLoading = false;
-        this.msgError = err.error.message;
-        console.log(err.error.message);
-        
+        this.msgError = err.error.message;        
       }
     });
   }else{

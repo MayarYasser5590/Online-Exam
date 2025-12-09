@@ -1,5 +1,5 @@
 export interface AuthModel {
-  message: string;
+  message?: string;
   token?: string;
   code?: number;
   info?: string;

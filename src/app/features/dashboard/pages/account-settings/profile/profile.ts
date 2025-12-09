@@ -1,8 +1,11 @@
-import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output, inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../../../../../../../projects/auth/src/public-api';
 import { ErrorResponseMsg } from "../../../../auth/components/ui/error-response-msg/error-response-msg";
+import { initFlowbite } from 'flowbite';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -11,13 +14,18 @@ import { ErrorResponseMsg } from "../../../../auth/components/ui/error-response-
   templateUrl: './profile.html',
   styleUrl: './profile.scss'
 })
-export class Profile implements OnInit {
+export class Profile implements OnInit , OnDestroy {
 
     @Output() continue = new EventEmitter<void>();
   private readonly authService = inject(AuthService)
 
   isLoading : boolean = false;
   msgError : string = '';
+  isSuccess :string = ''
+  private readonly router = inject(Router);
+  userDataSubscribe : Subscription = new Subscription();
+  editProfileSubscribe : Subscription = new Subscription();
+  deleteAccountSubscribe : Subscription = new Subscription();
 
   profileForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
@@ -28,11 +36,12 @@ export class Profile implements OnInit {
   });
 
   ngOnInit(): void {
+    initFlowbite();
     this.loadUserData();
   }
 
   loadUserData() {
-    this.authService.getLoggedUserInfo().subscribe({
+    this.userDataSubscribe = this.authService.getLoggedUserInfo().subscribe({
       next: (res) => {
 
         this.profileForm.patchValue({
@@ -44,14 +53,13 @@ export class Profile implements OnInit {
         });
       },
       error: (err: HttpErrorResponse) => {
-        this.msgError = err.error.message;
-        console.log(this.msgError);
-        
+        this.msgError = "Failed ... Try Again Later";        
       }
     });
   }
 
   submitProfile() {
+        this.isLoading = true;
     if (this.profileForm.invalid) {
       this.profileForm.markAllAsTouched();
       return;
@@ -61,19 +69,37 @@ export class Profile implements OnInit {
   }
 
   deleteMyAccount(){
-    this.authService.deleteMyAccount();
+   this.deleteAccountSubscribe = this.authService.deleteMyAccount().subscribe({
+      next:(res)=>{
+            localStorage.removeItem('token');
+           this.router.navigate(['/login']);
+      },
+      error:(err)=>{
+        console.log(err);
+        
+      }
+    });
   }
 
   editProfile(){
- this.authService.editProfile(this.profileForm.value).subscribe({
+  this.editProfileSubscribe = this.authService.editProfile(this.profileForm.value).subscribe({
       next: (res) => {
-        console.log('Updated:', res);
+        if(res.message === 'success'){
+
+         this.isSuccess = "Changes saved successfully.";
+        }
+                this.isLoading = false;
       },
       error: (err: HttpErrorResponse) => {
         this.msgError = 'failed .. please try again later';
-        console.log(this.msgError);
-        
+        this.isLoading = false;
       }
     })
 }
+ ngOnDestroy(): void {
+    this.userDataSubscribe.unsubscribe()
+    this.editProfileSubscribe.unsubscribe()
+    this.deleteAccountSubscribe.unsubscribe()
+
+ }
 }

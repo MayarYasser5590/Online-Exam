@@ -1,15 +1,15 @@
 <aside
   id="top-bar-sidebar"
-  class="fixed h-screen top-0 z-40 w-52 sm:w-72 md:w-[300px] lg:w-[362px] transition-transform"
+  class="fixed h-screen top-0 z-40 w-[45px] sm:w-[255px] md:w-[270px] lg:w-[362px] transition-transform"
   aria-label="Sidebar"
 >
-  <div class="sidebar-container p-4 sm:p-6 md:p-8 lg:p-10 bg-[#EFF6FF] border-e border-default">
+  <div class="sidebar-container p-1 sm:p-3 lg:p-8 bg-[#EFF6FF] border-e border-default">
     <div class="flex flex-col gap-[10px] mb-[60px] sm:w-32 md:w-40 lg:w-48 h-[77px]">
-      <img class="w-full" src="/assets/Final Logo 1.png" alt="Elevate Logo" />
+      <img class="w-full hidden sm:block" src="/assets/Final Logo 1.png" alt="Elevate Logo" />
       <div class="flex items-center gap-[.625rem]">
         <img src="/assets/folder-code.png" class="w-8 h-8 lg:w-10 lg:h-10 p-[.375rem]" alt="" />
         <span
-          class="capitalize font-geist font-semibold text-sm lg:text-[20px] align-middle leading-[100%] tracking-[0px] text-[#155DFC]"
+          class="capitalize hidden sm:block font-geist font-semibold text-sm lg:text-[20px] align-middle leading-[100%] tracking-[0px] text-[#155DFC]"
           >Exam App</span
         >
       </div>
@@ -26,7 +26,7 @@
               class="sidebar-link"
             >
               <img src="/assets/graduation-cap.png" alt="Diplomas" />
-              <span class="flex-1 whitespace-nowrap">Diplomas</span>
+              <span class="flex-1 whitespace-nowrap hidden sm:block">Diplomas</span>
             </a>
           </li>
           <li>
@@ -36,19 +36,21 @@
               class="sidebar-link"
             >
               <img src="/assets/user-round.png" alt="Account Settings" />
-              <span class="flex-1 whitespace-nowrap">Account Settings</span>
+              <span class="flex-1 whitespace-nowrap hidden sm:block">Account Settings</span>
             </a>
           </li>
         </ul>
       </div>
       <div class="flex justify-between items-center">
-        <div class="w-8 h-8 sm:w-12 sm:h-12 lg:w-[54px] lg:h-[54px]">
+        <div class="w-7 h-7 hidden sm:block sm:w-8 sm:h-8 lg:w-[54px] lg:h-[54px]">
           <img class="w-full" src="/assets/Avatar.png" alt="User Image" />
         </div>
-        <div class="flex flex-col ms-1 md:ms-0 md:gap-2 lg:gap-[10px] justify-center items-start">
-          <h3 class="username text-xs md:text-base">Firstname</h3>
+        <div
+          class="flex flex-col hidden sm:block ms-2 md:ms-0 md:gap-2 lg:gap-[10px] justify-center items-start"
+        >
+          <h3 class="username text-xs md:text-base">{{ userInfo.firstName }}</h3>
           <p class="text-[#6B7280] text-base-style text-[8px] sm:text-xs md:text-sm">
-            user-email@example.com
+            {{ userInfo.email }}
           </p>
         </div>
         <div class="relative">
@@ -71,7 +73,7 @@
 
           <div
             id="dropdownDots"
-            class="z-50 hidden w-44 bg-white rounded-lg shadow divide-y divide-gray-100"
+            class="z-60 hidden w-44 bg-white rounded-lg shadow divide-y divide-gray-100"
           >
             <ul class="py-2">
               <li>
@@ -80,13 +82,13 @@
                   class="dropdown-item text-[#1F2937] border-b border-b-[#F3F4F6]"
                 >
                   <img class="w-[18px] h-[18px]" src="/assets/user-round.png" alt="User Account" />
-                  <span class="flex-1 whitespace-nowrap">Account</span>
+                  <span class="flex-1 whitespace-nowrap hidden sm:block">Account</span>
                 </a>
               </li>
               <li>
                 <button class="dropdown-item text-[#DC2626]" (click)="logOut()">
                   <img class="w-[18px] h-[18px]" src="/assets/log-out.png" alt="User Account" />
-                  <a class="flex-1 whitespace-nowrap">Logout</a>
+                  <a class="flex-1 whitespace-nowrap hidden sm:block">Logout</a>
                 </button>
               </li>
             </ul>
