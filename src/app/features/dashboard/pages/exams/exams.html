@@ -8,25 +8,28 @@
     ></app-dashboard-header>
   </div>
   <div class="bg-white mt-2 md:mt-4 p-6">
-    <app-exam-header
-      titleInput="CSS Quiz"
-      questionsInput="25"
-      durationInput="20 minutes"
-    ></app-exam-header>
-    <app-exam-header
-      titleInput="Bootstrap Quiz"
-      questionsInput="25"
-      durationInput="20 minutes"
-    ></app-exam-header>
-    <app-exam-header
-      titleInput="Tailwind Quiz"
-      questionsInput="25"
-      durationInput="20 minutes"
-    ></app-exam-header>
-    <app-exam-header
-      titleInput="React Quiz"
-      questionsInput="25"
-      durationInput="20 minutes"
-    ></app-exam-header>
+    <div class="bg-[#EFF6FF] p-4 flex justify-between items-center mb-4">
+      <div class="flex flex-col gap-[4px]">
+        <h3
+          class="text-main font-geist font-semibold text-[20px] leading-[100%] tracking-[0] align-middle"
+        >
+          CSS Quiz
+        </h3>
+
+        <p
+          class="text-[#6B7280] font-geist font-normal text-sm leading-[100%] tracking-[0] align-middle"
+        >
+          25 Questions
+        </p>
+      </div>
+
+      <div class="flex gap-[6px] justify-center items-center">
+        <p
+          class="text-gray-800 font-geist font-medium text-sm leading-[100%] tracking-[0] align-middle"
+        >
+          Duration: <span class="font-normal">20 minutes</span>
+        </p>
+      </div>
+    </div>
   </div>
 </app-dashboard-pages-container>
