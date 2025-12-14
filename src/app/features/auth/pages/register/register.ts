@@ -8,8 +8,8 @@ import { InputErrorMessage } from "../../components/ui/input-error-message/input
 import { ErrorResponseMsg } from "../../components/ui/error-response-msg/error-response-msg";
 import { Subscription } from 'rxjs';
 import { AuthFooterComponent } from "../../components/ui/auth-footer/auth-footer";
-import { PASSWORD_PATTERN } from '../../components/business/pass-regex';
 import { confirmPasswordValidator } from '../../../../shared/utils/validators/confirm-password.validator';
+import { PASSWORD_PATTERN } from '../../../../shared/regex/pass-regex';
 
 @Component({
   selector: 'app-register',
