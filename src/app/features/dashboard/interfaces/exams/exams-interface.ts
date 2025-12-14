@@ -5,10 +5,10 @@ export interface AllExamResponse {
     numberOfPages: number;
     limit: number;
   };
-  exams: Exam[];
+  exams: AllExams[];
 }
 
-export interface Exam {
+export interface AllExams {
   _id: string;
   title: string;
   duration: number;
