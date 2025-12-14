@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 import { AuthFooterComponent } from "../../components/ui/auth-footer/auth-footer";
 import { PASSWORD_PATTERN } from '../../components/business/pass-regex';
 import { EmailService } from '../../services/email';
-import { confirmPasswordValidator } from '../../components/business/confirm-password.validator';
+import { confirmPasswordValidator } from '../../../../shared/utils/validators/confirm-password.validator';
 
 @Component({
   selector: 'app-reset-password',
