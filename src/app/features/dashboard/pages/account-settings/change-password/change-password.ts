@@ -1,7 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component,inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { confirmPasswordValidator } from '../../../../auth/components/business/confirm-password.validator';
 import { PASSWORD_PATTERN } from '../../../../auth/components/business/pass-regex';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
@@ -9,6 +8,7 @@ import { AuthService } from '../../../../../../../projects/auth/src/public-api';
 import { InputErrorMessage } from "../../../../auth/components/ui/input-error-message/input-error-message";
 import { ErrorResponseMsg } from "../../../../auth/components/ui/error-response-msg/error-response-msg";
 import { AuthFooterComponent } from "../../../../auth/components/ui/auth-footer/auth-footer";
+import { confirmPasswordValidator } from '../../../../../shared/utils/validators/confirm-password.validator';
 
 @Component({
   selector: 'app-change-password',
