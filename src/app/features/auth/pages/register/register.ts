@@ -9,7 +9,8 @@ import { ErrorResponseMsg } from "../../components/ui/error-response-msg/error-r
 import { Subscription } from 'rxjs';
 import { AuthFooterComponent } from "../../components/ui/auth-footer/auth-footer";
 import { PASSWORD_PATTERN } from '../../components/business/pass-regex';
-import { confirmPasswordValidator } from '../../components/business/confirm-password.validator';
+import { confirmPasswordValidator } from '../../../../shared/utils/validators/confirm-password.validator';
+
 @Component({
   selector: 'app-register',
   imports: [Header, ReactiveFormsModule, RouterLink , InputErrorMessage, ErrorResponseMsg, AuthFooterComponent],
