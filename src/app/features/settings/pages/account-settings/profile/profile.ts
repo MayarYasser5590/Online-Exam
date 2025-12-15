@@ -1,10 +1,10 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output, inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
-import { AuthService } from '../../../../../../../projects/auth/src/public-api';
-import { ErrorResponseMsg } from "../../../../auth/components/ui/error-response-msg/error-response-msg";
 import { initFlowbite } from 'flowbite';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../../../../../projects/auth/src/lib/auth.service';
+import { ErrorResponseMsg } from '../../../../auth/components/ui/error-response-msg/error-response-msg';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './profile.html',
   styleUrl: './profile.scss'
 })
-export class Profile implements OnInit , OnDestroy {
+export default class Profile implements OnInit , OnDestroy {
 
     @Output() continue = new EventEmitter<void>();
   private readonly authService = inject(AuthService)

@@ -19,32 +19,20 @@
         <ul
           class="space-y-2 font-geist text-xs lg:text-base font-normal align-middle tracking-normal leading-none"
         >
-          <li>
-            <a
-              routerLink="/home"
-              routerLinkActive="border border-[#2B7FFF] !text-main bg-[#DBEAFE]"
-              class="sidebar-link"
-            >
-              <img src="/assets/graduation-cap.png" alt="Diplomas" />
-              <span class="flex-1 whitespace-nowrap hidden sm:block">Diplomas</span>
-            </a>
-          </li>
-          <li>
-            <a
-              routerLink="account"
-              routerLinkActive="border border-[#2B7FFF] !text-main bg-[#DBEAFE]"
-              class="sidebar-link"
-            >
-              <img src="/assets/user-round.png" alt="Account Settings" />
-              <span class="flex-1 whitespace-nowrap hidden sm:block">Account Settings</span>
-            </a>
-          </li>
+          <app-sidebar-link route="/home" icon="/assets/graduation-cap.png" label="Diplomas">
+          </app-sidebar-link>
+
+          <app-sidebar-link route="account" icon="/assets/user-round.png" label="Account Settings">
+          </app-sidebar-link>
         </ul>
       </div>
       <div class="flex justify-between items-center">
-        <div class="w-7 h-7 hidden sm:block sm:w-8 sm:h-8 lg:w-[54px] lg:h-[54px]">
-          <img class="w-full" src="/assets/Avatar.png" alt="User Image" />
+        <div
+          class="w-7 h-7 hidden sm:flex sm:w-8 sm:h-8 lg:w-[54px] lg:h-[54px] items-center justify-center rounded-full bg-[#DBEAFE] text-[#155DFC] font-semibold text-sm lg:text-xl"
+        >
+          {{ userInitial }}
         </div>
+
         <div
           class="flex flex-col hidden sm:block ms-2 md:ms-0 md:gap-2 lg:gap-[10px] justify-center items-start"
         >

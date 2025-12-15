@@ -4,10 +4,11 @@ import { initFlowbite } from 'flowbite';
 import { AuthService } from '../../../../../../projects/auth/src/lib/auth.service';
 import { AuthModel } from '../../../../../../projects/auth/src/lib/interfaces/AuthModel';
 import { Subscription } from 'rxjs';
+import { SidebarLink } from "../../shared/sidebar-link/sidebar-link";
 
 @Component({
   selector: 'app-sidebar',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, SidebarLink],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
 })
@@ -15,6 +16,7 @@ export class Sidebar implements OnInit , AfterViewInit , OnDestroy {
   readonly authService = inject(AuthService);
   userInfo : AuthModel = {} 
   private readonly router = inject(Router);
+  userInitial : string = '';
   userInfoSubscribe : Subscription = new Subscription();
   logOutSubscribe : Subscription = new Subscription();
 
@@ -30,6 +32,9 @@ export class Sidebar implements OnInit , AfterViewInit , OnDestroy {
     this.userInfoSubscribe = this.authService.getLoggedUserInfo().subscribe({
       next:(res) => {
         this.userInfo = res;
+        this.userInitial = res.firstName
+        ? res.firstName.charAt(0).toUpperCase() : '';
+
       }
     })
   }

@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { initFlowbite } from 'flowbite';
-import { Sidebar } from "../sidebar/sidebar";
+import { Sidebar } from "../../pages/sidebar/sidebar";
 
 @Component({
   selector: 'app-dashboard-layout',

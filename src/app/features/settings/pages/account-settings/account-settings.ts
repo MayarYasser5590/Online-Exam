@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { DashboardPagesContainer } from "../../shared/dashboard-pages-container/dashboard-pages-container";
-import { Back } from "../../shared/back/back";
-import { DashboardHeader } from "../../layout/dashboard-header/dashboard-header";
-import { RouterLink, RouterLinkActive } from '@angular/router';
-import { AccountSidebar } from "./components/ui/account-sidebar/account-sidebar";
-import { Profile } from "./profile/profile";
+import { RouterLink} from '@angular/router';
+import Profile from "./profile/profile";
 import { ChangePassword } from "./change-password/change-password";
+import { DashboardPagesContainer } from '../../../dashboard/shared/dashboard-pages-container/dashboard-pages-container';
+import { DashboardHeader } from '../../../dashboard/layout/dashboard-header/dashboard-header';
+import { AccountSidebar } from '../../components/ui/account-sidebar/account-sidebar';
+import { Back } from '../../../dashboard/shared/back/back';
 
 @Component({
   selector: 'app-account-settings',

@@ -1,14 +1,14 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component,inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { PASSWORD_PATTERN } from '../../../../auth/components/business/pass-regex';
-import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import { AuthService } from '../../../../../../../projects/auth/src/public-api';
-import { InputErrorMessage } from "../../../../auth/components/ui/input-error-message/input-error-message";
-import { ErrorResponseMsg } from "../../../../auth/components/ui/error-response-msg/error-response-msg";
-import { AuthFooterComponent } from "../../../../auth/components/ui/auth-footer/auth-footer";
+import { InputErrorMessage } from '../../../../auth/components/ui/input-error-message/input-error-message';
+import { ErrorResponseMsg } from '../../../../auth/components/ui/error-response-msg/error-response-msg';
+import { AuthFooterComponent } from '../../../../auth/components/ui/auth-footer/auth-footer';
+import { PASSWORD_PATTERN } from '../../../../../shared/regex/pass-regex';
+import { AuthService } from '../../../../../../../projects/auth/src/lib/auth.service';
 import { confirmPasswordValidator } from '../../../../../shared/utils/validators/confirm-password.validator';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-change-password',

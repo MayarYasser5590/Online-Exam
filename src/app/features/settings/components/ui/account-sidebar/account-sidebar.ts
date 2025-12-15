@@ -1,11 +1,13 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, Output } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { AuthService } from '../../../../../../../../../projects/auth/src/lib/auth.service';
+import { AuthService } from '../../../../../../../projects/auth/src/public-api';
 import { Subscription } from 'rxjs';
+import { AccountSidebarAction } from "../account-sidebar-action/account-sidebar-action";
 
+type AccountStep = 'profile' | 'changePass';
 @Component({
   selector: 'app-account-sidebar',
-  imports: [],
+  imports: [AccountSidebarAction],
   templateUrl: './account-sidebar.html',
   styleUrl: './account-sidebar.scss',
 })
@@ -15,11 +17,11 @@ export class AccountSidebar implements OnDestroy {
   logOutSubscribe : Subscription = new Subscription();
 
 
-@Input() currentStep!: 'profile' | 'changePass';
+@Input() currentStep!: AccountStep;
 
-@Output() changeStep = new EventEmitter<'profile' | 'changePass'>();
+@Output() changeStep = new EventEmitter<AccountStep>();
 
-go(step: 'profile' | 'changePass') {
+go(step: AccountStep) {
   this.changeStep.emit(step);
 }
 
