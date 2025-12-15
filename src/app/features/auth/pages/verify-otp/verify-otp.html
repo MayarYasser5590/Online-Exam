@@ -1,0 +1,127 @@
+<main
+  class="flex flex-col justify-center items-start max-w-[90%] md:max-w-[452px] mx-auto min-h-screen"
+>
+  <div class="mb-10">
+    <img src="/assets/Back Container.png" alt="Back Container" />
+  </div>
+  <div class="pb-6">
+    <app-header>Verify OTP</app-header>
+    <div
+      class="mt-[10px] mb-6 font-geist text-base font-normal text-[16px] leading-[100%] tracking-[0px] align-middle"
+    >
+      <p class="pb-[10px] text-[#6B7280]">Please enter the 6-digits code we have sent to:</p>
+      <p class="text-[#1F2937]">
+        {{ email }}
+        <a routerLink="/forgetPassword" class="font-medium underline text-[#155DFC]">Edit</a>
+      </p>
+    </div>
+  </div>
+  <div class="flex flex-col w-full justify-center items-center">
+    <form [formGroup]="otpForm" (ngSubmit)="submitOtpForm()" class="w-full">
+      <div class="flex mb-2 justify-center space-x-4 rtl:space-x-reverse">
+        <div>
+          <label for="code-1" class="sr-only">First code</label>
+          <input
+            formControlName="digit1"
+            type="text"
+            maxlength="1"
+            data-focus-input-init
+            data-focus-input-next="code-2"
+            id="code-1"
+            class="w-10 h-10 text-[#1F2937] border border-[#E5E7EB]/60 bg-transparent text-center text-lg rounded-md focus:outline-none focus:border-[#3B82F6] focus:text-[#3B82F6]"
+            required
+          />
+        </div>
+        <div>
+          <label for="code-2" class="sr-only">Second code</label>
+          <input
+            formControlName="digit2"
+            type="text"
+            maxlength="1"
+            data-focus-input-init
+            data-focus-input-prev="code-1"
+            data-focus-input-next="code-3"
+            id="code-2"
+            class="w-10 h-10 text-[#1F2937] border border-[#E5E7EB]/60 bg-transparent text-center text-lg rounded-md focus:outline-none focus:border-[#3B82F6] focus:text-[#3B82F6]"
+            required
+          />
+        </div>
+        <div>
+          <label for="code-3" class="sr-only">Third code</label>
+          <input
+            formControlName="digit3"
+            type="text"
+            maxlength="1"
+            data-focus-input-init
+            data-focus-input-prev="code-2"
+            data-focus-input-next="code-4"
+            id="code-3"
+            class="w-10 h-10 border text-[#1F2937] border-[#E5E7EB]/60 bg-transparent text-center text-lg rounded-md focus:outline-none focus:border-[#3B82F6] focus:text-[#3B82F6]"
+            required
+          />
+        </div>
+        <div>
+          <label for="code-4" class="sr-only">Fourth code</label>
+          <input
+            formControlName="digit4"
+            type="text"
+            maxlength="1"
+            data-focus-input-init
+            data-focus-input-prev="code-3"
+            data-focus-input-next="code-5"
+            id="code-4"
+            class="w-10 h-10 text-[#1F2937] border border-[#E5E7EB]/60 bg-transparent text-center text-lg rounded-md focus:outline-none focus:border-[#3B82F6] focus:text-[#3B82F6]"
+            required
+          />
+        </div>
+        <div>
+          <label for="code-5" class="sr-only">Fifth code</label>
+          <input
+            formControlName="digit5"
+            type="text"
+            maxlength="1"
+            data-focus-input-init
+            data-focus-input-prev="code-4"
+            data-focus-input-next="code-6"
+            id="code-5"
+            class="w-10 h-10 text-[#1F2937] border border-[#E5E7EB]/60 bg-transparent text-center text-lg rounded-md focus:outline-none focus:border-[#3B82F6] focus:text-[#3B82F6]"
+            required
+          />
+        </div>
+        <div>
+          <label for="code-6" class="sr-only">Sixth code</label>
+          <input
+            formControlName="digit6"
+            type="text"
+            maxlength="1"
+            data-focus-input-init
+            data-focus-input-prev="code-5"
+            id="code-6"
+            class="w-10 h-10 text-[#1F2937] border border-[#E5E7EB]/60 bg-transparent text-center text-lg rounded-md focus:outline-none focus:border-[#3B82F6] focus:text-[#3B82F6]"
+            required
+          />
+        </div>
+      </div>
+
+      <div>
+        <p
+          class="text-[#6B7280] text-center mt-9 font-geist text-base font-medium text-[14px] leading-[100%] tracking-[0px] align-middle"
+        >
+          Didn’t receive the code? @if (!disableResend) {
+          <a class="text-[#155DFC] cursor-pointer" (click)="resendOtp()">Resend</a>
+          } @if (disableResend) {
+          <span class="text-gray-400 ml-1">(Resend in {{ countdown }}s)</span>
+          }
+        </p>
+        @if (resendSuccess) {
+        <p class="text-green-600 text-center text-sm mt-2">OTP has been resent to your email.</p>
+        } @if (msgError) {
+        <app-error-response-msg>{{ msgError }}</app-error-response-msg>
+        }
+        <app-auth-footer buttonLabel="Verify Code" [isLoading]="isLoading">
+          Don’t have an account? <a routerLink="/register" class="text-[#155DFC]"> Create yours </a>
+        </app-auth-footer>
+      </div>
+    </form>
+  </div>
+</main>

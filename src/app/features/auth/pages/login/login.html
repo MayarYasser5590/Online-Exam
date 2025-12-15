@@ -1,0 +1,45 @@
+<main class="auth-main-properties">
+  <app-header class="self-start">Login</app-header>
+  <form [formGroup]="loginForm" class="w-full" (ngSubmit)="submitLoginForm()">
+    <div class="input-container mt-6">
+      @let emailControl = loginForm.get('email');
+      <label for="email" class="form-label">Email</label>
+      <input
+        [class.border-red-600]="emailControl?.invalid && emailControl?.touched"
+        [class.border-gray-200]="!(emailControl?.invalid && emailControl?.touched)"
+        formControlName="email"
+        type="email"
+        id="email"
+        placeholder="user@example.com"
+        class="form-input"
+      />
+      <app-input-error-message [control]="emailControl"></app-input-error-message>
+    </div>
+    <div class="flex flex-col">
+      @let passwordControl = loginForm.get('password');
+      <label for="password" class="form-label">Password</label>
+      <input
+        [class.border-red-600]="passwordControl?.invalid && passwordControl?.touched"
+        [class.border-gray-200]="!(passwordControl?.invalid && passwordControl?.touched)"
+        formControlName="password"
+        type="password"
+        id="password"
+        placeholder="********"
+        class="form-input"
+      />
+      <a
+        routerLink="/forgetPasswordLayout"
+        class="self-end font-inter pt-[10px] font-medium text-[14px] leading-[100%] tracking-[0px] text-[#155DFC]"
+        >Forgot your password?</a
+      >
+      <app-input-error-message [control]="passwordControl" fieldName="password">
+      </app-input-error-message>
+    </div>
+    @if (msgError) {
+    <app-error-response-msg>{{ msgError }}</app-error-response-msg>
+    }
+    <app-auth-footer buttonLabel="Login" [isLoading]="isLoading">
+      Don’t have an account? <a routerLink="/register" class="text-[#155DFC]"> Create yours </a>
+    </app-auth-footer>
+  </form>
+</main>

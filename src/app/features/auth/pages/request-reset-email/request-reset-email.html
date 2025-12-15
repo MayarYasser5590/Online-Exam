@@ -1,0 +1,39 @@
+<main class="auth-main-properties">
+  <div class="pb-6 self-start">
+    <app-header>Forgot Password</app-header>
+    <p
+      class="mt-[10px] font-geist font-normal text-[#6B7280] text-[16px] leading-[100%] tracking-[0px] align-middle text-gray-300]"
+    >
+      Don’t worry, we will help you recover your account.
+    </p>
+  </div>
+  <form
+    [formGroup]="forgetPassForm"
+    class="input-container w-full"
+    (ngSubmit)="submitForgetPassForm()"
+  >
+    @let emailControl = forgetPassForm.get('email');
+    <label for="email" class="form-label">Email</label>
+    <input
+      [class.border-red-600]="emailControl?.invalid && emailControl?.touched"
+      [class.border-gray-200]="!(emailControl?.invalid && emailControl?.touched)"
+      formControlName="email"
+      type="email"
+      id="email"
+      placeholder="user@example.com"
+      class="form-input"
+    />
+    <app-input-error-message [control]="emailControl"></app-input-error-message>
+
+    <div class="auth-footer-container">
+      <app-main-button class="pt-9" label="Continue" icon="/assets/move-right.png">
+        > @if (isLoading) {
+        <span><i class="fas fa-spin fa-spinner text-white"></i></span>
+        }
+      </app-main-button>
+      <p class="form-end-ques">
+        Don’t have an account?<a routerLink="/register" class="text-[#155DFC]"> Create yours</a>
+      </p>
+    </div>
+  </form>
+</main>

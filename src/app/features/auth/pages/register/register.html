@@ -1,0 +1,129 @@
+<main class="auth-main-properties my-[10px] lg-my[4px]">
+  <app-header class="self-start">Create Account</app-header>
+  <form class="w-full" [formGroup]="registerForm" (ngSubmit)="submitRegisterForm()">
+    <div class="fullName mt-6 w-full mx-auto mb-[10px]">
+      @let fullNameControl = registerForm.get('firstName') || registerForm.get('lastName');
+      <div class="flex justify-center md:gap-x-[10px] items-center">
+        <div class="flex flex-col grow">
+          @let firstNameControl = registerForm.get('firstName');
+          <label for="firstName" class="form-label">First name</label>
+          <input
+            [class.border-red-600]="firstNameControl?.invalid && firstNameControl?.touched"
+            [class.border-gray-200]="!(firstNameControl?.invalid && firstNameControl?.touched)"
+            formControlName="firstName"
+            type="text"
+            id="firstName"
+            placeholder="Ahmed"
+            class="form-input"
+          />
+        </div>
+        <div class="flex flex-col grow">
+          @let lastNameControl = registerForm.get('lastName');
+          <label for="lastName" class="form-label">Last name</label>
+          <input
+            [class.border-red-600]="lastNameControl?.invalid && lastNameControl?.touched"
+            [class.border-gray-200]="!(lastNameControl?.invalid && lastNameControl?.touched)"
+            formControlName="lastName"
+            type="text"
+            id="lastName"
+            placeholder="Abdullah"
+            class="form-input"
+          />
+        </div>
+      </div>
+      <app-input-error-message [control]="fullNameControl"></app-input-error-message>
+    </div>
+    <div class="input-container">
+      @let userNameControl = registerForm.get('username');
+      <label for="username" class="form-label">Username</label>
+      <input
+        [class.border-red-600]="userNameControl?.invalid && userNameControl?.touched"
+        [class.border-gray-200]="!(userNameControl?.invalid && userNameControl?.touched)"
+        formControlName="username"
+        type="text"
+        id="username"
+        placeholder="user123"
+        class="form-input"
+      />
+      <app-input-error-message [control]="userNameControl"></app-input-error-message>
+    </div>
+    <div class="input-container">
+      @let emailControl = registerForm.get('email');
+      <label for="email" class="form-label">Email</label>
+      <input
+        [class.border-red-600]="emailControl?.invalid && emailControl?.touched"
+        [class.border-gray-200]="!(emailControl?.invalid && emailControl?.touched)"
+        formControlName="email"
+        type="email"
+        id="email"
+        placeholder="user@example.com"
+        class="form-input"
+      />
+      <app-input-error-message [control]="emailControl"></app-input-error-message>
+    </div>
+    <div class="input-container">
+      @let phoneControl = registerForm.get('phone');
+      <label for="phone" class="form-label">Phone</label>
+      <div class="flex items-center border border-[#E5E7EB] rounded-md px-[10px] gap-2">
+        <img src="/assets/flag.png" alt="flag" class="w-[23px] h-[16px]" />
+        <span class="text-gray-300">EG (+20)</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          class="w-[14px] h-[14px] text-gray-400 cursor-pointer"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
+        </svg>
+        <input
+          [class.border-red-600]="phoneControl?.invalid && phoneControl?.touched"
+          [class.border-gray-200]="!(phoneControl?.invalid && phoneControl?.touched)"
+          formControlName="phone"
+          type="tel"
+          placeholder="1012345678"
+          class="form-input grow"
+        />
+      </div>
+      <app-input-error-message [control]="phoneControl" fieldName="phone">
+      </app-input-error-message>
+    </div>
+    <div class="input-container">
+      @let passwordControl = registerForm.get('password');
+      <label for="password" class="form-label">Password</label>
+      <input
+        [class.border-red-600]="passwordControl?.invalid && passwordControl?.touched"
+        [class.border-gray-200]="!(passwordControl?.invalid && passwordControl?.touched)"
+        formControlName="password"
+        type="password"
+        id="password"
+        placeholder="********"
+        class="form-input"
+      />
+      <app-input-error-message [control]="passwordControl" fieldName="password">
+      </app-input-error-message>
+    </div>
+    <div class="input-container">
+      @let rePasswordControl = registerForm.get('rePassword');
+      <label for="rePassword" class="form-label">Confirm Password</label>
+      <input
+        [class.border-red-600]="rePasswordControl?.invalid && rePasswordControl?.touched"
+        [class.border-gray-200]="!(rePasswordControl?.invalid && rePasswordControl?.touched)"
+        formControlName="rePassword"
+        type="password"
+        id="rePassword"
+        placeholder="********"
+        class="form-input"
+      />
+      <app-input-error-message [control]="rePasswordControl" fieldName="password">
+      </app-input-error-message>
+    </div>
+    @if (msgError) {
+    <app-error-response-msg>{{ msgError }}</app-error-response-msg>
+    }
+    <app-auth-footer buttonLabel="Create Account" [isLoading]="isLoading">
+      Already have an account? <a routerLink="/login" class="text-[#155DFC]"> Login </a>
+    </app-auth-footer>
+  </form>
+</main>
