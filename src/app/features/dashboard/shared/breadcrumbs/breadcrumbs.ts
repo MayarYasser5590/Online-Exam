@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd, RouterLink } from '@angular/router';
-import { filter } from 'rxjs';
+import { filter, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-breadcrumbs',
@@ -8,12 +8,13 @@ import { filter } from 'rxjs';
   imports: [RouterLink],
   templateUrl: './breadcrumbs.html'
 })
-export class Breadcrumbs {
+export class Breadcrumbs implements OnDestroy {
 
   segments: { label: string; url: string }[] = [];
+  routerSubscribe : Subscription = new Subscription();
 
   constructor(private router: Router) {
-    this.router.events
+    this.routerSubscribe = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => this.buildBreadcrumbs());
   }
@@ -35,4 +36,7 @@ private formatLabel(text: string): string {
     .join(' ');
 }
 
+ ngOnDestroy(): void {
+     this.routerSubscribe.unsubscribe()
+ }
 }

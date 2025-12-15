@@ -5,7 +5,7 @@
   ></app-dashboard-header>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[10px] mt-2 md:mt-4">
     @for (diploma of diplomas; track diploma._id) {
-    <div class="relative inline-block h-[400px] overflow-hidden">
+    <div class="relative inline-block cursor-pointer h-[400px] overflow-hidden" routerLink="/exams">
       <img class="w-full h-full object-cover" [src]="diploma.icon" [alt]="diploma.name" />
 
       <div
