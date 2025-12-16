@@ -4,10 +4,9 @@
 >
   @if (label()) {
   <span class="pe-[10px]">{{ label() }}</span>
-
-  @if (icon()) {
+  @if (isLoading()) {
+  <i class="fas fa-spin fa-spinner text-white"></i>
+  } @if (icon()) {
   <img class="w-[18px] h-[18px]" [src]="icon()" alt="button icon" />
-  } } @else {
-  <ng-content></ng-content>
-  }
+  } }
 </button>

@@ -4,21 +4,14 @@
     title="Diplomas"
   ></app-dashboard-header>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[10px] mt-2 md:mt-4">
-    @for (diploma of diplomas; track diploma._id) {
-    <div
-      class="relative inline-block h-[400px] cursor-pointer overflow-hidden group"
-      routerLink="/exams"
-    >
-      <img
-        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 group-focus:scale-110"
-        [src]="diploma.icon"
-        [alt]="diploma.name"
-      />
+    @for (diploma of diplomas.slice(0, 6); track diploma._id) {
+    <div class="relative cursor-pointer h-[400px]" routerLink="/exams">
+      <img class="w-full h-full object-cover" [src]="diploma.icon" [alt]="diploma.name" />
 
       <div
-        class="absolute bottom-2 w-[94%] text-center mx-auto left-0 right-0 bg-[#155DFC]/50 backdrop-blur-[6px] p-4 transition-all duration-500 group-hover:bg-[#155DFC]/70 group-focus:bg-[#155DFC]/70"
+        class="absolute bottom-2 w-[94%] mx-auto left-0 right-0 bg-[#155DFC]/50 backdrop-blur-[6px] p-4 text-center"
       >
-        <h3 class="text-white font-geist font-semibold text-[20px] leading-[100%] tracking-[0]">
+        <h3 class="text-white font-geist font-semibold text-[20px]">
           {{ diploma.name }}
         </h3>
       </div>
@@ -26,8 +19,27 @@
 
     }
   </div>
+
   <div class="flex flex-col justify-center items-center p-[10px] mt-6 gap-[4px]">
-    <p class="text-[#4B5563] font-geist font-normal text-[16px]">Scroll to view more</p>
-    <img class="w-[18px] h-[18px]" src="/assets/chevron-down.png" alt="chevron-down" />
+    <p #scroll class="text-[#4B5563] font-geist text-[16px]">Scroll to view more</p>
+    <img class="w-[18px] h-[18px]" src="/assets/chevron-down.png" />
   </div>
+
+  @defer (on viewport(scroll)) {
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[10px] mt-6">
+    @for (diploma of diplomas.slice(6); track diploma._id) {
+    <div class="relative cursor-pointer h-[400px]" routerLink="/exams">
+      <img class="w-full h-full object-cover" [src]="diploma.icon" [alt]="diploma.name" />
+
+      <div
+        class="absolute bottom-2 w-[94%] mx-auto left-0 right-0 bg-[#155DFC]/50 backdrop-blur-[6px] p-4 text-center"
+      >
+        <h3 class="text-white font-geist font-semibold text-[20px]">
+          {{ diploma.name }}
+        </h3>
+      </div>
+    </div>
+    }
+  </div>
+  }
 </app-dashboard-pages-container>

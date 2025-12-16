@@ -9,4 +9,5 @@ import { Component, input} from '@angular/core';
 export class MainButton {
   label = input<string | null>(null);
   icon = input<string | null>(null);
+  isLoading = input(false);
 }

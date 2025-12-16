@@ -16,9 +16,6 @@ getAllSubjects():Observable<DiplomasResponse>{
   return this.httpClient.get<DiplomasResponse>(`${this.baseUrl}/subjects`)
   }
 
-getSingleSubjects(id : string):Observable<any>{
-  return this.httpClient.get(`${this.baseUrl}/subjects/${id}`)
-  }
 }
 
 
