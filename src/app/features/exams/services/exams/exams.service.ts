@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DASHBOARD_CONFIG } from '../../dashboard/dashboard-config';
-import { AllExamResponse } from '../interfaces/exams/exams';
+import { AllExamResponse } from '../../interfaces/exams/exams';
+import { DASHBOARD_CONFIG } from '../../../dashboard/dashboard-config';
 
 @Injectable({
   providedIn: 'root',

@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { DashboardHeader } from '../../../dashboard/layout/dashboard-header/dashboard-header';
 import { DashboardPagesContainer } from '../../../dashboard/shared/dashboard-pages-container/dashboard-pages-container';
 import { Back } from '../../../dashboard/shared/back/back';
-import { ExamsService } from '../../services/exams.service';
+import { ExamsService } from '../../services/exams/exams.service';
 import { AllExams } from '../../interfaces/exams/exams';
 import { Subscription } from 'rxjs';
 
