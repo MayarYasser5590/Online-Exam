@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output, inject } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild, inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { initFlowbite } from 'flowbite';
@@ -6,11 +6,13 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../../../../../projects/auth/src/lib/auth.service';
 import { ErrorResponseMsg } from '../../../../auth/components/ui/error-response-msg/error-response-msg';
 import { Subscription } from 'rxjs';
+import { ProfileActionButton } from "../../../components/ui/profile-action-button/profile-action-button";
+import { Dialog } from "./components/dialog/dialog";
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [ReactiveFormsModule, ErrorResponseMsg],
+  imports: [ReactiveFormsModule, ErrorResponseMsg, ProfileActionButton, Dialog],
   templateUrl: './profile.html',
   styleUrl: './profile.scss'
 })
@@ -25,7 +27,13 @@ export default class Profile implements OnInit , OnDestroy {
   private readonly router = inject(Router);
   userDataSubscribe : Subscription = new Subscription();
   editProfileSubscribe : Subscription = new Subscription();
-  deleteAccountSubscribe : Subscription = new Subscription();
+
+  @ViewChild(Dialog) dialog!: Dialog;
+
+  openDeleteDialog() {
+    this.dialog.open();
+  }
+
 
   profileForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
@@ -68,19 +76,6 @@ export default class Profile implements OnInit , OnDestroy {
     this.editProfile();
   }
 
-  deleteMyAccount(){
-   this.deleteAccountSubscribe = this.authService.deleteMyAccount().subscribe({
-      next:(res)=>{
-            localStorage.removeItem('token');
-           this.router.navigate(['/login']);
-      },
-      error:(err)=>{
-        console.log(err);
-        
-      }
-    });
-  }
-
   editProfile(){
   this.editProfileSubscribe = this.authService.editProfile(this.profileForm.value).subscribe({
       next: (res) => {
@@ -99,7 +94,5 @@ export default class Profile implements OnInit , OnDestroy {
  ngOnDestroy(): void {
     this.userDataSubscribe.unsubscribe()
     this.editProfileSubscribe.unsubscribe()
-    this.deleteAccountSubscribe.unsubscribe()
-
  }
 }
