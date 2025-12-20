@@ -38,23 +38,21 @@
     <div
       class="flex justify-center text-[10px] md:text-[14px] gap-[10px] pt-4 items-center w-full max-w-full"
     >
-      <button
-        data-modal-target="popup-modal"
-        data-modal-toggle="popup-modal"
-        class="text-red-600 py-2 md:py-4 w-full bg-red-50"
-        type="button"
-      >
-        Delete My Account
-      </button>
-
-      <button
-        (click)="submitProfile()"
-        class="text-white flex justify-center items-center py-2 md:py-4 w-full bg-main"
-      >
-        Save Changes @if (isLoading) {
-        <i class="fas fa-spin fa-spinner text-white ms-2"></i>
-        }
-      </button>
+      <div class="flex-1">
+        <app-profile-action-button
+          label="Delete My Account"
+          buttonClass="text-red-600 py-2 w-full bg-red-50"
+          (action)="openDeleteDialog()"
+        ></app-profile-action-button>
+      </div>
+      <div class="flex-1">
+        <app-profile-action-button
+          label="Save Changes"
+          buttonClass="text-white flex justify-center items-center  w-full bg-main"
+          [isLoading]="isLoading"
+          (action)="submitProfile()"
+        ></app-profile-action-button>
+      </div>
     </div>
     @if (msgError) {
     <app-error-response-msg>{{ msgError }}</app-error-response-msg>
@@ -66,80 +64,4 @@
     }
   </form>
 </section>
-<button
-  data-modal-target="popup-modal"
-  data-modal-toggle="popup-modal"
-  class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
-  type="button"
->
-  Toggle modal
-</button>
-<div
-  id="popup-modal"
-  tabindex="-1"
-  class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
->
-  <div class="relative px-4 py-5 w-full max-w-md md:max-w-2xl max-h-full">
-    <div class="relative bg-white border border-default rounded-base shadow-sm p-4 md:p-6">
-      <button
-        type="button"
-        class="absolute top-3 end-2.5 text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center"
-        data-modal-hide="popup-modal"
-      >
-        <svg
-          class="w-5 h-5"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18 17.94 6M18 18 6.06 6"
-          />
-        </svg>
-        <span class="sr-only">Close modal</span>
-      </button>
-      <div class="p-4 md:p-5 text-center">
-        <div class="flex justify-center items-center mb-5">
-          <div class="relative flex my-5 items-center justify-center">
-            <div class="absolute w-24 h-24 rounded-full bg-red-50"></div>
-            <div class="absolute w-16 h-16 rounded-full bg-red-100"></div>
-            <img src="/assets/triangle-alert.png" class="relative w-10 h-10" />
-          </div>
-        </div>
-
-        <div class="mb-6 text-body flex flex-col justify-center items-center gap-[10px]">
-          <h3 class="text-red-600 text-[18px] font-medium font-geist">
-            Are you sure you want to delete your account?
-          </h3>
-          <h4 class="text-gray-500 text-[14px] font-normal font-geist">
-            This action is permanent and cannot be undone.
-          </h4>
-        </div>
-        <div class="flex items-center space-x-4 justify-center">
-          <button
-            data-modal-hide="popup-modal"
-            type="button"
-            class="text-body text-black bg-gray-200 box-border border border-default-medium hover:bg-gray-400 hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
-          >
-            Cancel
-          </button>
-          <button
-            data-modal-hide="popup-modal"
-            type="button"
-            class="text-white bg-red-600 box-border border border-default-medium hover:bg-red-800 hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
-            (click)="deleteMyAccount()"
-          >
-            Yes, delete
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<app-dialog></app-dialog>

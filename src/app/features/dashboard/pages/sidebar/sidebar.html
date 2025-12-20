@@ -42,45 +42,29 @@
           </p>
         </div>
         <div class="relative">
-          <button
-            id="dropdownDotsButton"
-            data-dropdown-toggle="dropdownDots"
-            class="p-1 lg:p-2 rounded hover:bg-gray-200"
-            type="button"
-          >
-            <svg
-              class="w-4 h-4 lg:w-5 lg:h-5 text-gray-400"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M10 6a2 2 0 110-4 2 2 0 010 4zm0 4a2 2 0 110-4 2 2 0 010 4zm0 4a2 2 0 110-4 2 2 0 010 4z"
-              />
-            </svg>
+          <button type="button" (click)="menu.toggle($event)" class="p-1 rounded hover:bg-gray-200">
+            <i class="pi pi-ellipsis-v w-4 h-4 lg:w-5 lg:h-5 text-gray-400"></i>
           </button>
-
-          <div
-            id="dropdownDots"
-            class="z-60 hidden w-44 bg-white rounded-lg shadow divide-y divide-gray-100"
+          <p-menu
+            #menu
+            [model]="items"
+            class="w-44 bg-white rounded-lg shadow divide-y divide-gray-100"
+            [popup]="true"
+            appendTo="body"
+            [baseZIndex]="1000"
           >
-            <ul class="py-2">
-              <li>
-                <a
-                  routerLink="account"
-                  class="dropdown-item text-[#1F2937] border-b border-b-[#F3F4F6]"
-                >
-                  <img class="w-[18px] h-[18px]" src="/assets/user-round.png" alt="User Account" />
-                  <span class="flex-1 whitespace-nowrap hidden sm:block">Account</span>
-                </a>
-              </li>
-              <li>
-                <button class="dropdown-item text-[#DC2626]" (click)="logOut()">
-                  <img class="w-[18px] h-[18px]" src="/assets/log-out.png" alt="User Account" />
-                  <a class="flex-1 whitespace-nowrap hidden sm:block">Logout</a>
-                </button>
-              </li>
-            </ul>
-          </div>
+            <ng-template let-item pTemplate="item">
+              <a
+                [routerLink]="item.routerLink"
+                (click)="item.command?.()"
+                class="flex items-center cursor-pointer gap-2 p-2 border-b border-b-[#F3F4F6] text-[#1F2937] hover:bg-gray-100"
+              >
+                <img [src]="item.image" class="w-[18px] h-[18px]" alt="{{ item.label }}" />
+
+                <span class="flex-1 whitespace-nowrap hidden sm:block">{{ item.label }}</span>
+              </a>
+            </ng-template>
+          </p-menu>
         </div>
       </div>
     </div>

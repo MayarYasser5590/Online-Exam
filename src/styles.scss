@@ -1,8 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'primeicons/primeicons.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+.p-menu-overlay {
+  z-index: 9999;
+}
+
+.p-menu {
+  padding: 0 !important;
+}
+
+.p-menu .p-menu-list {
+  padding: 0 !important;
+}
 
 .form-label {
     @apply text-[16px] pb-1 font-geist font-medium leading-[100%] tracking-[0px] text-gray-700;
@@ -37,4 +50,11 @@
     @apply text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] pb-1 font-geist font-medium leading-[100%] tracking-[0px] text-gray-700;
   }
 
+.p-dialog .p-dialog-header,
+.p-dialog .p-dialog-content {
+  padding: 0 !important;
+}
 
+.p-dialog {
+  border-radius: 0.5rem;
+}

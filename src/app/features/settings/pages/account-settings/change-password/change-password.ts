@@ -9,10 +9,11 @@ import { PASSWORD_PATTERN } from '../../../../../shared/regex/pass-regex';
 import { AuthService } from '../../../../../../../projects/auth/src/lib/auth.service';
 import { confirmPasswordValidator } from '../../../../../shared/utils/validators/confirm-password.validator';
 import { Subscription } from 'rxjs';
+import { ShowPasswordIcon } from "../../../../../shared/components/UI/show-password-icon/show-password-icon";
 
 @Component({
   selector: 'app-change-password',
-  imports: [ReactiveFormsModule, InputErrorMessage, ErrorResponseMsg, AuthFooterComponent],
+  imports: [ReactiveFormsModule, InputErrorMessage, ErrorResponseMsg, AuthFooterComponent, ShowPasswordIcon],
   templateUrl: './change-password.html',
   styleUrl: './change-password.scss',
 })
@@ -23,7 +24,21 @@ export class ChangePassword {
     isSuccess :string = ''
     private readonly router = inject(Router);
     changePassSubscribe : Subscription = new Subscription();
+    showOldPassword = false;
+    showNewPassword = false;
+    showRePassword = false;
 
+toggleOldPassword() {
+  this.showOldPassword = !this.showOldPassword;
+}
+
+toggleNewPassword() {
+  this.showNewPassword = !this.showNewPassword;
+}
+
+toggleRePassword() {
+  this.showRePassword = !this.showRePassword;
+}
 
   changePasswordForm = new FormGroup({
     oldPassword: new FormControl(null  , [Validators.required , Validators.pattern(PASSWORD_PATTERN)]),
