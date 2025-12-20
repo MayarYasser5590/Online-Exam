@@ -1,0 +1,12 @@
+<li>
+  <a
+    [routerLink]="route"
+    routerLinkActive="border border-[#2B7FFF] !text-main bg-[#DBEAFE]"
+    class="sidebar-link"
+  >
+    <img [src]="icon" [alt]="label" />
+    <span class="flex-1 whitespace-nowrap hidden sm:block">
+      {{ label }}
+    </span>
+  </a>
+</li>

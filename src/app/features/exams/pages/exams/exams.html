@@ -1,0 +1,41 @@
+<app-dashboard-pages-container>
+  <div class="flex gap-[10px]">
+    <app-back></app-back>
+    <div class="flex-1 w-full max-w-full">
+      <app-dashboard-header
+        icon="/assets/book-open-check-white.png"
+        title="Exams"
+      ></app-dashboard-header>
+    </div>
+  </div>
+  <div class="bg-white mt-2 md:mt-4 p-6">
+    @for (exam of Exams; track exam._id) {
+    <div class="bg-[#EFF6FF] p-4 flex justify-between items-center mb-4">
+      <div class="flex flex-col gap-[4px]">
+        <h3
+          class="text-main font-geist font-semibold text-[20px] leading-[100%] tracking-[0] align-middle"
+        >
+          {{ exam.title }}
+        </h3>
+
+        <p
+          class="text-[#6B7280] font-geist font-normal text-sm leading-[100%] tracking-[0] align-middle"
+        >
+          {{ exam.numberOfQuestions }}
+        </p>
+      </div>
+
+      <div class="flex gap-[6px] justify-center items-center">
+        <p
+          class="text-gray-800 font-geist font-medium text-sm leading-[100%] tracking-[0] align-middle"
+        >
+          Duration: <span class="font-normal">{{ exam.duration }}</span>
+        </p>
+      </div>
+    </div>
+    }
+    <div class="p-[10px] mt-4 gap-[4px]">
+      <p class="text-[#4B5563] text-center font-geist font-normal text-[16px]">End of list</p>
+    </div>
+  </div>
+</app-dashboard-pages-container>

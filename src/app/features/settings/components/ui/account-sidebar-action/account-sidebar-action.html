@@ -1,0 +1,10 @@
+<li>
+  <button
+    (click)="onClick()"
+    [class.sidebar-link-active]="activeStep === step"
+    class="sidebar-link text-gray-500"
+  >
+    <img class="w-2 h-2 lg:w-6 lg:h-6" [src]="icon" [alt]="label" />
+    <span class="flex-1 whitespace-nowrap">{{ label }}</span>
+  </button>
+</li>
