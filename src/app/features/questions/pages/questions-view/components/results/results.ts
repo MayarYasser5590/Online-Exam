@@ -37,7 +37,7 @@ export class Results {
           ],
           backgroundColor: ['#22c55e', '#ef4444'],
           borderWidth: 0,
-          hoverOffset: 6
+          hoverOffset: 1
         }
       ]
     };
