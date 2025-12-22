@@ -9,8 +9,8 @@ export const dashboardRoutes: Routes = [
          {path:'' , redirectTo:'home' , pathMatch:'full'},
          {path:'home' , loadComponent:()=>import('../dashboard/pages/home/home').then((c)=> c.Home) , title:'Home'},
          {path:'account' , loadComponent:()=>import('../settings/pages/account-settings/account-settings').then((c)=> c.AccountSettings) , title:'Account'},
-         {path:'exams' , loadComponent:()=>import('../exams/pages/exams/exams').then((c)=> c.Exams) , title:'Exams'}
-
+         {path:'exams' , loadComponent:()=>import('../exams/pages/exams/exams').then((c)=> c.Exams) , title:'Exams'},
+         {path: 'exams/:examId/questions', loadComponent:()=>import('../questions/pages/questions-view/questions-view').then((c)=>c.QuestionsView)}
      ]
   }
 ];

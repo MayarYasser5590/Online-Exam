@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DASHBOARD_CONFIG } from '../../../dashboard/dashboard-config';
 import { HttpClient } from '@angular/common/http';
-import { QuestionsResponse } from '../../interfaces/questions/questions';
+import { QuestionsResponse } from '../../interfaces/questions/questions.interface';
 
 @Injectable({
   providedIn: 'root',

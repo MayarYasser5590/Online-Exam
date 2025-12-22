@@ -5,7 +5,11 @@
   ></app-dashboard-header>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[10px] mt-2 md:mt-4">
     @for (diploma of diplomas.slice(0, 6); track diploma._id) {
-    <div class="relative cursor-pointer h-[400px]" routerLink="/exams">
+    <div
+      class="relative cursor-pointer h-[400px]"
+      routerLink="/exams"
+      (click)="openDiploma(diploma)"
+    >
       <img class="w-full h-full object-cover" [src]="diploma.icon" [alt]="diploma.name" />
 
       <div

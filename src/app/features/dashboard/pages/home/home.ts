@@ -29,6 +29,11 @@ getAllDiplomas(){
   })
 }
 
+openDiploma(diploma: Diploma) {
+  this.diplomaService.setDiplomaTitle(diploma.name);
+}
+
+
  ngOnDestroy(): void {
     this.diplomaSubscribe.unsubscribe()
  }
