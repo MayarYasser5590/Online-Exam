@@ -1,0 +1,72 @@
+<aside
+  id="top-bar-sidebar"
+  class="fixed h-screen top-0 z-40 w-[45px] sm:w-[255px] md:w-[270px] lg:w-[362px] transition-transform"
+  aria-label="Sidebar"
+>
+  <div class="sidebar-container p-1 sm:p-3 lg:p-8 bg-[#EFF6FF] border-e border-default">
+    <div class="flex flex-col gap-[10px] mb-[60px] sm:w-32 md:w-40 lg:w-48 h-[77px]">
+      <img class="w-full hidden sm:block" src="/assets/Final Logo 1.png" alt="Elevate Logo" />
+      <div class="flex items-center gap-[.625rem]">
+        <img src="/assets/folder-code.png" class="w-8 h-8 lg:w-10 lg:h-10 p-[.375rem]" alt="" />
+        <span
+          class="capitalize hidden sm:block font-geist font-semibold text-sm lg:text-[20px] align-middle leading-[100%] tracking-[0px] text-[#155DFC]"
+          >Exam App</span
+        >
+      </div>
+    </div>
+    <div class="flex flex-col flex-1 justify-between">
+      <div>
+        <ul
+          class="space-y-2 font-geist text-xs lg:text-base font-normal align-middle tracking-normal leading-none"
+        >
+          <app-sidebar-link route="/home" icon="/assets/graduation-cap.png" label="Diplomas">
+          </app-sidebar-link>
+
+          <app-sidebar-link route="account" icon="/assets/user-round.png" label="Account Settings">
+          </app-sidebar-link>
+        </ul>
+      </div>
+      <div class="flex justify-between items-center">
+        <div
+          class="w-7 h-7 hidden sm:flex sm:w-8 sm:h-8 lg:w-[54px] lg:h-[54px] items-center justify-center rounded-full bg-[#DBEAFE] text-[#155DFC] font-semibold text-sm lg:text-xl"
+        >
+          {{ userInitial }}
+        </div>
+
+        <div
+          class="flex flex-col hidden sm:block ms-2 md:ms-0 md:gap-2 lg:gap-[10px] justify-center items-start"
+        >
+          <h3 class="username text-xs md:text-base">{{ userInfo.firstName }}</h3>
+          <p class="text-[#6B7280] text-base-style text-[8px] sm:text-xs md:text-sm">
+            {{ userInfo.email }}
+          </p>
+        </div>
+        <div class="relative">
+          <button type="button" (click)="menu.toggle($event)" class="p-1 rounded hover:bg-gray-200">
+            <i class="pi pi-ellipsis-v w-4 h-4 lg:w-5 lg:h-5 text-gray-400"></i>
+          </button>
+          <p-menu
+            #menu
+            [model]="items"
+            class="w-44 bg-white rounded-lg shadow divide-y divide-gray-100"
+            [popup]="true"
+            appendTo="body"
+            [baseZIndex]="1000"
+          >
+            <ng-template let-item pTemplate="item">
+              <a
+                [routerLink]="item.routerLink"
+                (click)="item.command?.()"
+                class="flex items-center cursor-pointer gap-2 p-2 border-b border-b-[#F3F4F6] text-[#1F2937] hover:bg-gray-100"
+              >
+                <img [src]="item.image" class="w-[18px] h-[18px]" alt="{{ item.label }}" />
+
+                <span class="flex-1 whitespace-nowrap hidden sm:block">{{ item.label }}</span>
+              </a>
+            </ng-template>
+          </p-menu>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>

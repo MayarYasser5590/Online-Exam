@@ -1,5 +1,5 @@
 export interface AuthModel {
-  message: string;
+  message?: string;
   token?: string;
   code?: number;
   info?: string;
@@ -11,4 +11,6 @@ export interface AuthModel {
   isVerified?: boolean;
   id?: string;
   createdAt?: string;
+  phone?: string;
+
 }

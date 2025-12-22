@@ -1,0 +1,7 @@
+.sidebar-link{
+  @apply flex items-center text-start gap-[10px] text-gray-500 p-1 md:py-[10px] md:px-[16px];
+}
+
+.sidebar-link-active {
+  @apply text-main bg-[#DBEAFE] w-full;
+}

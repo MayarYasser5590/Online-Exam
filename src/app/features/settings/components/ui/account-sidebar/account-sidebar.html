@@ -1,0 +1,37 @@
+<div class="flex flex-col h-full p-1 sm:p-2 lg:p-6 justify-between">
+  <div>
+    <ul
+      class="space-y-2 font-geist text-[8px] md:text-xs lg:text-base font-normal align-middle tracking-normal leading-none"
+    >
+      <app-account-sidebar-action
+        icon="/assets/circle-user-round.png"
+        label="Profile"
+        step="profile"
+        [activeStep]="currentStep"
+        (action)="go($event)"
+      >
+      </app-account-sidebar-action>
+
+      <app-account-sidebar-action
+        icon="/assets/lock.png"
+        label="Change Password"
+        step="changePass"
+        [activeStep]="currentStep"
+        (action)="go($event)"
+      >
+      </app-account-sidebar-action>
+    </ul>
+  </div>
+  <div>
+    <ul
+      class="font-geist text-xs lg:text-base font-normal align-middle tracking-normal leading-none"
+    >
+      <li>
+        <button (click)="logOut()" class="text-[#DC2626] w-full sidebar-link bg-red-50">
+          <img class="w-[18px] h-[18px]" src="/assets/log-out.png" alt="User Account" />
+          <a class="whitespace-nowrap">Logout</a>
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

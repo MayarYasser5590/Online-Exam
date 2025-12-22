@@ -1,0 +1,67 @@
+<section class="w-full max-w-full overflow-y-auto overflow-x-hidden">
+  <form class="w-full max-w-full" [formGroup]="profileForm">
+    <div class="fullName mb-[10px] w-full max-w-full">
+      <div class="flex gap-1 md:gap-[10px] w-full max-w-full">
+        <div class="flex flex-col grow w-full">
+          <label class="account-label">First name</label>
+          <input type="text" formControlName="firstName" class="account-input w-full" />
+        </div>
+
+        <div class="flex flex-col grow w-full">
+          <label class="account-label">Last name</label>
+          <input type="text" formControlName="lastName" class="account-input w-full" />
+        </div>
+      </div>
+    </div>
+
+    <div class="input-container w-full max-w-full">
+      <label class="account-label">Username</label>
+      <input formControlName="username" type="text" class="account-input w-full" />
+    </div>
+
+    <div class="input-container w-full max-w-full">
+      <label class="account-label">Email</label>
+      <input formControlName="email" type="email" class="account-input w-full" />
+    </div>
+
+    <div class="input-container w-full max-w-full">
+      <label class="account-label">Phone</label>
+      <div
+        class="flex items-center border border-[#E5E7EB] ps-[7px] md:ps-[10px] gap-2 w-full max-w-full"
+      >
+        <img src="/assets/flag.png" class="w-4 h-4 md:w-[23px] md:h-[16px]" />
+        <span class="text-gray-300 text-[8px] md:text-[12px]">EG (+20)</span>
+        <input type="tel" formControlName="phone" class="grow account-input" />
+      </div>
+    </div>
+
+    <div
+      class="flex justify-center text-[10px] md:text-[14px] gap-[10px] pt-4 items-center w-full max-w-full"
+    >
+      <div class="flex-1">
+        <app-profile-action-button
+          label="Delete My Account"
+          buttonClass="text-red-600 py-2 w-full bg-red-50"
+          (action)="openDeleteDialog()"
+        ></app-profile-action-button>
+      </div>
+      <div class="flex-1">
+        <app-profile-action-button
+          label="Save Changes"
+          buttonClass="text-white flex justify-center items-center  w-full bg-main"
+          [isLoading]="isLoading"
+          (action)="submitProfile()"
+        ></app-profile-action-button>
+      </div>
+    </div>
+    @if (msgError) {
+    <app-error-response-msg>{{ msgError }}</app-error-response-msg>
+    } @if (isSuccess) {
+    <p class="bg-green-50 text-green-600 mt-9 py-[10px] border border-green-600 text-center">
+      {{ isSuccess }}
+    </p>
+
+    }
+  </form>
+</section>
+<app-dialog></app-dialog>

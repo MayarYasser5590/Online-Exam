@@ -1,0 +1,67 @@
+<section class="exam-container">
+  <div class="flex justify-between items-center text-[#6B7280] text-[14px] font-geist font-normal">
+    <h3>{{ diplomaTitle }} - {{ examTitle }}</h3>
+    <span
+      >Question <span class="text-main font-semibold">{{ currentIndex + 1 }}</span> of
+      {{ total }}</span
+    >
+  </div>
+
+  <p-progressBar [value]="progress" [showValue]="false" class="custom-progress"></p-progressBar>
+
+  <div class="question-card pt-6">
+    <h3 class="text-main font-geist text-[20px] font-semibold mb-4">{{ question.question }}</h3>
+
+    <div class="options flex flex-col gap-[10px]">
+      @for (answer of question.answers; track answer.key) {
+      <div
+        class="option-item bg-gray-50 cursor-pointer p-4"
+        (click)="answerSelected.emit(answer.key)"
+      >
+        <p-radioButton
+          name="question-{{ question._id }}"
+          [value]="answer.key"
+          [(ngModel)]="selectedAnswer"
+        >
+        </p-radioButton>
+
+        <label class="text-[#1F2937] text-[14px] ps-1 font-geist font-normal">{{
+          answer.answer
+        }}</label>
+      </div>
+      }
+    </div>
+  </div>
+
+  <div class="exam-footer flex justify-between items-center mt-6 gap-4">
+    <div class="flex-1">
+      <p-button
+        label="Previous"
+        icon="pi pi-arrow-left"
+        severity="secondary"
+        [disabled]="currentIndex === 0"
+        (onClick)="prev.emit()"
+        styleClass="exam-prev-btn w-full"
+      ></p-button>
+    </div>
+    <div class="timer-wrapper flex justify-center items-center">
+      <p-knob
+        [(ngModel)]="remainingSeconds"
+        [max]="totalSeconds"
+        [readonly]="true"
+        [size]="56"
+        valueTemplate="{{ remainingTime }}"
+        [valueColor]="isWarningTime ? '#ef4444' : '#155dfc'"
+      ></p-knob>
+    </div>
+    <div class="flex-1">
+      <p-button
+        label="{{ currentIndex + 1 === total ? 'Submit' : 'Next' }}"
+        icon="pi pi-arrow-right"
+        iconPos="right"
+        (onClick)="next.emit()"
+        styleClass="exam-next-btn w-full"
+      ></p-button>
+    </div>
+  </div>
+</section>

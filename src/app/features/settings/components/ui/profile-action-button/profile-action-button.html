@@ -1,0 +1,14 @@
+<button
+  [type]="type"
+  (click)="action.emit()"
+  class="py-2 md:py-4 w-full"
+  [ngClass]="buttonClass"
+  [attr.data-modal-target]="modalTarget"
+  [attr.data-modal-toggle]="modalToggle"
+>
+  {{ label }}
+
+  @if (isLoading) {
+  <i class="fas fa-spin fa-spinner ms-2"></i>
+  }
+</button>

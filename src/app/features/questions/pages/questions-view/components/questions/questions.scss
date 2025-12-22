@@ -1,0 +1,65 @@
+::ng-deep .custom-progress {
+  height: 16px;
+  background-color: #EFF6FF;
+  border-radius: 0 !important;
+}
+
+::ng-deep .custom-progress .p-progressbar-value {
+  background-color: #155DFC;
+}
+
+:host ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight {
+  background: #155dfc !important;
+  border-color: #155dfc !important;
+}
+
+:host ::ng-deep .p-radiobutton .p-radiobutton-box.p-highlight .p-radiobutton-icon {
+  background-color: white !important;
+}
+
+.option-item:has(.p-radiobutton-box.p-highlight) {
+  background-color: #dee1e6;
+}
+
+
+:host ::ng-deep .exam-prev-btn {
+  width: 100%;
+  background-color: #e5e7eb !important;
+  color: #1f2937 !important;
+  border: none !important;
+  cursor: pointer;
+}
+
+:host ::ng-deep .exam-next-btn {
+  width: 100%;
+  background-color: #155dfc !important;
+  color: white !important;
+  border: none !important;
+  cursor: pointer;
+}
+
+:host ::ng-deep .exam-next-btn .p-button {
+  background-color: #155dfc !important;
+  color: white !important;
+  border: none;
+}
+
+:host ::ng-deep .exam-next-btn .p-button:hover {
+  background-color: #0a3caa !important;
+}
+
+:host ::ng-deep .exam-prev-btn .p-button {
+  background-color: #e5e7eb !important;
+  color: #1f2937 !important;
+}
+
+:host ::ng-deep .exam-prev-btn .p-button:hover {
+  background-color: #d1d5db !important;
+}
+
+
+
+
+
+
+

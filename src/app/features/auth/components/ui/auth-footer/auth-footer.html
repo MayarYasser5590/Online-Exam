@@ -1,12 +1,7 @@
 <div class="auth-footer-container pt-9 w-full">
-  <app-main-button>
-    {{ buttonLabel }}
-    @if (isLoading) {
-    <i class="fas fa-spin fa-spinner text-white ms-2"></i>
-    }
-  </app-main-button>
+  <app-main-button [label]="buttonLabel" [isLoading]="isLoading"> </app-main-button>
 
   <p class="form-end-ques">
-    <ng-content #question> </ng-content>
+    <ng-content></ng-content>
   </p>
 </div>

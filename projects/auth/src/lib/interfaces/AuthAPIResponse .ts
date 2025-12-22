@@ -12,5 +12,6 @@ export interface AuthAPIResponse {
     isVerified?: boolean;
     _id?: string;
     createdAt?: string;
+    phone?: string;
   };
 }
