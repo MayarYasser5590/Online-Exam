@@ -1,0 +1,55 @@
+<p-dialog
+  [(visible)]="showDeleteDialog"
+  [modal]="true"
+  [closable]="false"
+  [draggable]="false"
+  [resizable]="false"
+  [style]="{ width: '100%', maxWidth: '32rem' }"
+  contentStyleClass="p-0"
+  appendTo="body"
+>
+  <div class="relative bg-white border border-default rounded-lg shadow-sm p-4 md:p-6">
+    <button
+      type="button"
+      class="absolute top-3 end-2.5 text-body hover:bg-neutral-tertiary rounded-base w-9 h-9 flex items-center justify-center"
+      (click)="close()"
+    >
+      ✕
+    </button>
+
+    <div class="flex justify-center items-center mb-5">
+      <div class="relative flex my-5 items-center justify-center">
+        <div class="absolute w-24 h-24 rounded-full bg-red-50"></div>
+        <div class="absolute w-16 h-16 rounded-full bg-red-100"></div>
+        <img src="/assets/triangle-alert.png" class="relative w-10 h-10" />
+      </div>
+    </div>
+
+    <div class="mb-6 text-body flex flex-col justify-center items-center gap-[10px] text-center">
+      <h3 class="text-red-600 text-[18px] font-medium font-geist">
+        Are you sure you want to delete your account?
+      </h3>
+      <h4 class="text-gray-500 text-[14px] font-normal font-geist">
+        This action is permanent and cannot be undone.
+      </h4>
+    </div>
+
+    <div class="flex items-center space-x-4 justify-center">
+      <button
+        type="button"
+        class="bg-gray-200 rounded-sm px-4 py-2.5 rounded-base"
+        (click)="close()"
+      >
+        Cancel
+      </button>
+
+      <button
+        type="button"
+        class="bg-red-600 text-white rounded-sm px-4 py-2.5 rounded-base"
+        (click)="deleteMyAccount()"
+      >
+        Yes, delete
+      </button>
+    </div>
+  </div>
+</p-dialog>

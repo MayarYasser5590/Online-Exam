@@ -20,6 +20,7 @@ export class AuthAPIAdaptorService implements Adaptor {
     role : data?.user?.role,
     isVerified : data?.user?.isVerified,
     id : data?.user?._id,
+    phone: data?.user?.phone,
     createdAt : data?.user?.createdAt,
     }
   }

@@ -1,0 +1,9 @@
+::ng-deep .custom-progress {
+  height: 16px;
+  background-color: #EFF6FF;
+  border-radius: 0 !important;
+}
+
+::ng-deep .custom-progress .p-progressbar-value {
+  background-color: #155DFC;
+}
