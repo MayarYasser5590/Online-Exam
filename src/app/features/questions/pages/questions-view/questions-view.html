@@ -1,0 +1,41 @@
+<app-dashboard-pages-container>
+  <div class="flex gap-[10px]">
+    <app-back routerLink="/exams"></app-back>
+    <div class="flex-1 w-full max-w-full">
+      <app-dashboard-header
+        icon="/assets/circle-question-mark.png"
+        title="{{ currentQuestion?.exam?.title }}"
+      ></app-dashboard-header>
+    </div>
+  </div>
+  <div class="bg-white h-full block w-full max-w-full overflow-x-hidden p-6 mt-2 md:mt-4">
+    @if (currentQuestion && !showResults) {
+    <app-questions
+      [question]="currentQuestion"
+      [examTitle]="currentQuestion.exam.title"
+      [diplomaTitle]="diplomaTitle()"
+      [currentIndex]="currentIndex"
+      [total]="questions.length"
+      [progress]="progress"
+      [totalSeconds]="totalSeconds"
+      [remainingSeconds]="remainingSeconds"
+      [remainingTime]="remainingTime"
+      [selectedAnswer]="selectedAnswers[currentQuestionId]"
+      (answerSelected)="selectAnswer(currentQuestionId, $event)"
+      (next)="next()"
+      (prev)="prev()"
+    />
+    } @else {
+    <app-results
+      [questions]="questions"
+      [selectedAnswers]="selectedAnswers"
+      [diplomaTitle]="diplomaTitle()"
+      [currentIndex]="currentIndex"
+      [total]="questions.length"
+      [progress]="progress"
+      [correctCount]="correctCount"
+      (restart)="restart()"
+    />
+    }
+  </div>
+</app-dashboard-pages-container>

@@ -13,8 +13,8 @@ import { RouterLink } from '@angular/router';
   styleUrl: './home.scss',
 })
 export class Home implements OnInit , OnDestroy{
-  private readonly diplomaService = inject(DiplomasService)
-  diplomas : Diploma[] = []
+  private readonly diplomaService = inject(DiplomasService);
+  diplomas : Diploma[] = [];
   diplomaSubscribe : Subscription = new Subscription();
 
 ngOnInit(): void {
@@ -28,6 +28,12 @@ getAllDiplomas(){
     }
   })
 }
+
+openDiploma(diploma: Diploma) {
+  this.diplomaService.setDiplomaTitle(diploma.name);
+}
+
+
  ngOnDestroy(): void {
     this.diplomaSubscribe.unsubscribe()
  }

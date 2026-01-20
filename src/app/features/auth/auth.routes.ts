@@ -10,9 +10,9 @@ export const authRoutes: Routes = [
      {path:'' , component:AuthLayout ,
   children:[
          {path:'' , redirectTo:'login' , pathMatch:'full'},
-         {path:'login' , component:Login , canActivate:[logedGuard] , title:'Login'},
-         {path:'register' , component:Register , canActivate:[logedGuard] ,title:'Register'},
-         {path:'forgetPasswordLayout',component:ForgetPasswordLayout , title:'Forget Password'},
+         {path:'login' , loadComponent:()=>import('../auth/pages/login/login').then((c)=>c.Login) , canActivate:[logedGuard] , title:'Login'},
+         {path:'register' , loadComponent:()=>import('../auth/pages/register/register').then((c)=>c.Register) , canActivate:[logedGuard] ,title:'Register'},
+         {path:'forgetPasswordLayout', loadComponent:()=>import('../auth/layouts/forget-password-layout/forget-password-layout').then((c)=>c.ForgetPasswordLayout) , title:'Forget Password'},
 
      ]}
 ];
