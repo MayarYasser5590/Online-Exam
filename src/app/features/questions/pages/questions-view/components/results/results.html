@@ -1,5 +1,7 @@
 <section class="results-container">
-  <div class="flex justify-between text-[#6B7280] text-[14px] font-geist font-normal items-center">
+  <div
+    class="flex justify-between text-[#6B7280] text-[8px] md:text-[12px] lg:text-[14px] font-geist font-normal items-center"
+  >
     <h3>{{ diplomaTitle }} - {{ examTitle }}</h3>
     <span
       >Question <span class="text-main font-semibold">{{ currentIndex + 1 }}</span> of
@@ -8,7 +10,7 @@
   </div>
 
   <p-progressBar [value]="progress" [showValue]="false" class="custom-progress"></p-progressBar>
-  <h2 class="text-main pt-4 text-[24px] font-geist font-semibold mb-4">Results:</h2>
+  <h2 class="text-main pt-4 text-16px md:text-[24px] font-geist font-semibold mb-4">Results:</h2>
 
   <div
     class="lg:flex lg:justify-between lg:items-start lg:h-[414px] border relative border-[#F3F4F6] lg:overflow-y-auto"
@@ -18,10 +20,10 @@
         type="doughnut"
         [data]="chartData"
         [options]="chartOptions"
-        class="lg:w-[190px] lg:h-190px]"
+        class="w-[150px] h-[150px] lg:w-[190px] lg:h-190px]"
       ></p-chart>
 
-      <div class="flex flex-col mt-2 gap-2 text-[14px] font-geist">
+      <div class="flex flex-col mt-2 gap-2 text-[12px] md:text-[14px] font-geist">
         <div class="flex items-center gap-2">
           <span class="w-3 h-3 bg-emerald-500"></span>
           <span class="text-gray-800">Correct : {{ correctCount }}</span>

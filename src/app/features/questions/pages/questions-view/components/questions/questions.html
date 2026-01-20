@@ -1,5 +1,7 @@
 <section class="exam-container">
-  <div class="flex justify-between items-center text-[#6B7280] text-[14px] font-geist font-normal">
+  <div
+    class="flex justify-between items-center text-[#6B7280] text-[8px] md:text-[12px] lg:text-[14px] font-geist font-normal"
+  >
     <h3>{{ diplomaTitle }} - {{ examTitle }}</h3>
     <span
       >Question <span class="text-main font-semibold">{{ currentIndex + 1 }}</span> of
@@ -10,12 +12,14 @@
   <p-progressBar [value]="progress" [showValue]="false" class="custom-progress"></p-progressBar>
 
   <div class="question-card pt-6">
-    <h3 class="text-main font-geist text-[20px] font-semibold mb-4">{{ question.question }}</h3>
+    <h3 class="text-main font-geist text-[10px] md:text-[16px] lg:text-[20px] font-semibold mb-4">
+      {{ question.question }}
+    </h3>
 
     <div class="options flex flex-col gap-[10px]">
       @for (answer of question.answers; track answer.key) {
       <div
-        class="option-item bg-gray-50 cursor-pointer p-4"
+        class="option-item bg-gray-50 cursor-pointer p-2 md:p-4"
         (click)="answerSelected.emit(answer.key)"
       >
         <p-radioButton
@@ -25,7 +29,7 @@
         >
         </p-radioButton>
 
-        <label class="text-[#1F2937] text-[14px] ps-1 font-geist font-normal">{{
+        <label class="text-[#1F2937] text-[10px] md:text-[14px] ps-1 font-geist font-normal">{{
           answer.answer
         }}</label>
       </div>
@@ -33,7 +37,7 @@
     </div>
   </div>
 
-  <div class="exam-footer flex justify-between items-center mt-6 gap-4">
+  <div class="exam-footer flex justify-between items-center mt-6 gap-1 md:gap-4">
     <div class="flex-1">
       <p-button
         label="Previous"
@@ -49,7 +53,7 @@
         [(ngModel)]="remainingSeconds"
         [max]="totalSeconds"
         [readonly]="true"
-        [size]="56"
+        [size]="45"
         valueTemplate="{{ remainingTime }}"
         [valueColor]="isWarningTime ? '#ef4444' : '#155dfc'"
       ></p-knob>
