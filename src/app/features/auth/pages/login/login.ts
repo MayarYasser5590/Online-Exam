@@ -6,13 +6,14 @@ import { Header } from '../../components/ui/header/header';
 import { HttpErrorResponse } from '@angular/common/http';
 import { InputErrorMessage } from "../../components/ui/input-error-message/input-error-message";
 import { ErrorResponseMsg } from "../../components/ui/error-response-msg/error-response-msg";
-import { Subscription } from 'rxjs';
 import { AuthFooterComponent } from "../../components/ui/auth-footer/auth-footer";
 import { PASSWORD_PATTERN } from '../../../../shared/regex/pass-regex';
+import { Subscription } from 'rxjs';
+import { ShowPasswordIcon } from '../../../../shared/components/UI/show-password-icon/show-password-icon';
 
 @Component({
   selector: 'app-login',
-  imports: [RouterLink, Header, ReactiveFormsModule, InputErrorMessage, ErrorResponseMsg, AuthFooterComponent],
+  imports: [RouterLink, Header, ReactiveFormsModule, InputErrorMessage, ErrorResponseMsg, AuthFooterComponent , ShowPasswordIcon],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
@@ -21,7 +22,12 @@ export class Login implements OnDestroy {
   private readonly router = inject(Router);
   msgError: string = '';
   isLoading = false;
+  showPassword = false;
   loginSubscribe : Subscription = new Subscription();
+
+  togglePassword() {
+  this.showPassword = !this.showPassword;
+}
 
 loginForm: FormGroup = new FormGroup({
     email: new FormControl(null , [Validators.required , Validators.email]),

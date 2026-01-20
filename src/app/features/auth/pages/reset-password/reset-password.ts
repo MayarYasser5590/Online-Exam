@@ -6,16 +6,17 @@ import { InputErrorMessage } from "../../components/ui/input-error-message/input
 import { AuthService } from '../../../../../../projects/auth/src/lib/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorResponseMsg } from "../../components/ui/error-response-msg/error-response-msg";
-import { Subscription } from 'rxjs';
 import { AuthFooterComponent } from "../../components/ui/auth-footer/auth-footer";
 import { EmailService } from '../../services/email';
 import { confirmPasswordValidator } from '../../../../shared/utils/validators/confirm-password.validator';
 import { PASSWORD_PATTERN } from '../../../../shared/regex/pass-regex';
+import { ShowPasswordIcon } from '../../../../shared/components/UI/show-password-icon/show-password-icon';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-reset-password',
   standalone: true,
-  imports: [Header, ReactiveFormsModule, RouterLink, InputErrorMessage, ErrorResponseMsg, AuthFooterComponent],
+  imports: [Header, ReactiveFormsModule, RouterLink, InputErrorMessage, ErrorResponseMsg, AuthFooterComponent , ShowPasswordIcon],
   templateUrl: './reset-password.html',
   styleUrl: './reset-password.scss',
 })
@@ -27,8 +28,17 @@ export class ResetPassword implements OnDestroy {
     isLoading = false;
     private readonly emailService = inject(EmailService);
     email: string | null = null;
+    showNewPassword = false;
+    showRePassword = false;
     resetPassSubscribe : Subscription = new Subscription();
 
+toggleNewPassword() {
+  this.showNewPassword = !this.showNewPassword;
+}
+
+toggleRePassword() {
+  this.showRePassword = !this.showRePassword;
+}
 
 ngOnInit() {
   this.email = this.emailService.getEmail();

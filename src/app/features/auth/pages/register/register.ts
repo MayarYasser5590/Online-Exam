@@ -6,14 +6,15 @@ import { ReactiveFormsModule ,FormControl, FormGroup, Validators, AbstractContro
 import { HttpErrorResponse } from '@angular/common/http';
 import { InputErrorMessage } from "../../components/ui/input-error-message/input-error-message";
 import { ErrorResponseMsg } from "../../components/ui/error-response-msg/error-response-msg";
-import { Subscription } from 'rxjs';
 import { AuthFooterComponent } from "../../components/ui/auth-footer/auth-footer";
 import { confirmPasswordValidator } from '../../../../shared/utils/validators/confirm-password.validator';
 import { PASSWORD_PATTERN } from '../../../../shared/regex/pass-regex';
+import { ShowPasswordIcon } from '../../../../shared/components/UI/show-password-icon/show-password-icon';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register',
-  imports: [Header, ReactiveFormsModule, RouterLink , InputErrorMessage, ErrorResponseMsg, AuthFooterComponent],
+  imports: [Header, ReactiveFormsModule, RouterLink , InputErrorMessage, ErrorResponseMsg, AuthFooterComponent , ShowPasswordIcon],
   templateUrl: './register.html',
   styleUrl: './register.scss',
 })
@@ -22,7 +23,17 @@ export class Register implements OnDestroy {
    private readonly router = inject(Router);
    isLoading : boolean = false;
    msgError : string = ""
+    showPassword = false;
+    showRePassword = false;
    registerSubscribe : Subscription = new Subscription();
+
+   togglePassword() {
+  this.showPassword = !this.showPassword;
+}
+
+toggleRePassword() {
+  this.showRePassword = !this.showRePassword;
+}
 
   registerForm: FormGroup = new FormGroup({
     firstName: new FormControl(null , [Validators.required , Validators.minLength(3) ]),
