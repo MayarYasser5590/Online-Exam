@@ -33,7 +33,7 @@ export class Sidebar implements OnInit , OnDestroy {
      this.items = [
   {
     label: 'Account',
-    image: './assets/user-round.png',
+    image: './assets/user-round.webp',
     routerLink: 'account'
   },
   {
@@ -41,7 +41,7 @@ export class Sidebar implements OnInit , OnDestroy {
   },
   {
     label: 'Logout',
-    image: './assets/log-out.png',
+    image: './assets/log-out.webp',
     command: () => this.logOut(),
   }
 ];
