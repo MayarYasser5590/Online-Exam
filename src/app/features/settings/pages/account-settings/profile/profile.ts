@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild, inject } from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
-import { initFlowbite } from 'flowbite';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../../../../projects/auth/src/lib/auth.service';
 import { ErrorResponseMsg } from '../../../../auth/components/ui/error-response-msg/error-response-msg';
@@ -44,7 +43,6 @@ export default class Profile implements OnInit , OnDestroy {
   });
 
   ngOnInit(): void {
-    initFlowbite();
     this.loadUserData();
   }
 

@@ -65,14 +65,14 @@
       @let phoneControl = registerForm.get('phone');
       <label for="phone" class="form-label">Phone</label>
       <div class="flex items-center border border-[#E5E7EB] rounded-md ps-[10px]">
-        <img src="/assets/flag.png" alt="flag" class="w-[23px] h-[16px] pe-2" />
+        <img src="/assets/flag.webp" alt="flag" class="w-[23px] h-[16px] pe-2" />
         <span class="text-gray-300 pe-2">EG (+2)</span>
         <input
           [class.border-red-600]="phoneControl?.invalid && phoneControl?.touched"
           [class.border-gray-200]="!(phoneControl?.invalid && phoneControl?.touched)"
           formControlName="phone"
           type="tel"
-          placeholder="1012345678"
+          placeholder="01012345678"
           class="form-input flex-1"
         />
       </div>

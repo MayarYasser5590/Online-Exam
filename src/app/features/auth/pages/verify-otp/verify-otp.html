@@ -2,7 +2,7 @@
   class="flex flex-col justify-center items-start max-w-[90%] md:max-w-[452px] mx-auto min-h-screen"
 >
   <div class="mb-10 cursor-pointer" routerLink="/forgetPassword">
-    <img src="/assets/Back Container.png" alt="Back Container" />
+    <img src="/assets/Back Container.webp" alt="Back Container" />
   </div>
 
   <div class="pb-6">
@@ -21,7 +21,6 @@
 
   <div class="flex flex-col w-full justify-center items-center">
     <form [formGroup]="otpForm" (ngSubmit)="submitOtpForm()" class="w-full">
-      <!-- OTP INPUT -->
       <div class="flex justify-center mb-4">
         <p-inputOtp
           formControlName="otp"

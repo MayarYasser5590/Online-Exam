@@ -1,6 +1,5 @@
 import { Component, AfterViewInit, inject, OnInit, OnDestroy } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from "@angular/router";
-import { initFlowbite } from 'flowbite';
 import { AuthService } from '../../../../../../projects/auth/src/lib/auth.service';
 import { AuthModel } from '../../../../../../projects/auth/src/lib/interfaces/AuthModel';
 import { Subscription } from 'rxjs';
@@ -33,7 +32,7 @@ export class Sidebar implements OnInit , OnDestroy {
      this.items = [
   {
     label: 'Account',
-    image: './assets/user-round.png',
+    image: './assets/user-round.webp',
     routerLink: 'account'
   },
   {
@@ -41,7 +40,7 @@ export class Sidebar implements OnInit , OnDestroy {
   },
   {
     label: 'Logout',
-    image: './assets/log-out.png',
+    image: './assets/log-out.webp',
     command: () => this.logOut(),
   }
 ];
