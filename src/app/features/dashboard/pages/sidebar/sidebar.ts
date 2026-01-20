@@ -1,6 +1,5 @@
 import { Component, AfterViewInit, inject, OnInit, OnDestroy } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from "@angular/router";
-import { initFlowbite } from 'flowbite';
 import { AuthService } from '../../../../../../projects/auth/src/lib/auth.service';
 import { AuthModel } from '../../../../../../projects/auth/src/lib/interfaces/AuthModel';
 import { Subscription } from 'rxjs';
