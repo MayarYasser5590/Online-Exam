@@ -1,9 +1,9 @@
-<main class="auth-main-properties my-[10px] lg-my[4px]">
+<main class="auth-main-properties my-6">
   <app-header class="self-start">Create Account</app-header>
   <form class="w-full" [formGroup]="registerForm" (ngSubmit)="submitRegisterForm()">
     <div class="fullName mt-6 w-full mx-auto mb-[10px]">
       @let fullNameControl = registerForm.get('firstName') || registerForm.get('lastName');
-      <div class="flex justify-center md:gap-x-[10px] items-center">
+      <div class="flex justify-center gap-x-1 md:gap-x-[10px] items-center">
         <div class="flex flex-col grow">
           @let firstNameControl = registerForm.get('firstName');
           <label for="firstName" class="form-label">First name</label>
@@ -64,26 +64,16 @@
     <div class="input-container">
       @let phoneControl = registerForm.get('phone');
       <label for="phone" class="form-label">Phone</label>
-      <div class="flex items-center border border-[#E5E7EB] rounded-md px-[10px] gap-2">
-        <img src="/assets/flag.png" alt="flag" class="w-[23px] h-[16px]" />
-        <span class="text-gray-300">EG (+20)</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="2"
-          stroke="currentColor"
-          class="w-[14px] h-[14px] text-gray-400 cursor-pointer"
-        >
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6" />
-        </svg>
+      <div class="flex items-center border border-[#E5E7EB] rounded-md ps-[10px]">
+        <img src="/assets/flag.png" alt="flag" class="w-[23px] h-[16px] pe-2" />
+        <span class="text-gray-300 pe-2">EG (+2)</span>
         <input
           [class.border-red-600]="phoneControl?.invalid && phoneControl?.touched"
           [class.border-gray-200]="!(phoneControl?.invalid && phoneControl?.touched)"
           formControlName="phone"
           type="tel"
           placeholder="1012345678"
-          class="form-input grow"
+          class="form-input flex-1"
         />
       </div>
       <app-input-error-message [control]="phoneControl" fieldName="phone">
@@ -92,30 +82,42 @@
     <div class="input-container">
       @let passwordControl = registerForm.get('password');
       <label for="password" class="form-label">Password</label>
-      <input
-        [class.border-red-600]="passwordControl?.invalid && passwordControl?.touched"
-        [class.border-gray-200]="!(passwordControl?.invalid && passwordControl?.touched)"
-        formControlName="password"
-        type="password"
-        id="password"
-        placeholder="********"
-        class="form-input"
-      />
+      <div class="relative">
+        <input
+          [class.border-red-600]="passwordControl?.invalid && passwordControl?.touched"
+          [class.border-gray-200]="!(passwordControl?.invalid && passwordControl?.touched)"
+          formControlName="password"
+          [type]="showPassword ? 'text' : 'password'"
+          id="password"
+          placeholder="********"
+          class="form-input w-full"
+        />
+        <app-show-password-icon
+          [isVisible]="showPassword"
+          (toggle)="togglePassword()"
+        ></app-show-password-icon>
+      </div>
       <app-input-error-message [control]="passwordControl" fieldName="password">
       </app-input-error-message>
     </div>
     <div class="input-container">
       @let rePasswordControl = registerForm.get('rePassword');
       <label for="rePassword" class="form-label">Confirm Password</label>
-      <input
-        [class.border-red-600]="rePasswordControl?.invalid && rePasswordControl?.touched"
-        [class.border-gray-200]="!(rePasswordControl?.invalid && rePasswordControl?.touched)"
-        formControlName="rePassword"
-        type="password"
-        id="rePassword"
-        placeholder="********"
-        class="form-input"
-      />
+      <div class="relative">
+        <input
+          [class.border-red-600]="rePasswordControl?.invalid && rePasswordControl?.touched"
+          [class.border-gray-200]="!(rePasswordControl?.invalid && rePasswordControl?.touched)"
+          formControlName="rePassword"
+          [type]="showRePassword ? 'text' : 'password'"
+          id="rePassword"
+          placeholder="********"
+          class="form-input w-full"
+        />
+        <app-show-password-icon
+          [isVisible]="showRePassword"
+          (toggle)="toggleRePassword()"
+        ></app-show-password-icon>
+      </div>
       <app-input-error-message [control]="rePasswordControl" fieldName="password">
       </app-input-error-message>
     </div>

@@ -5,6 +5,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Override PrimeNG InputOtp hover & focus */
+
+.p-inputotp .p-inputtext:hover {
+  border-color: #BFDBFE !important;
+}
+
+.p-inputotp .p-inputtext:hover:not(.p-focus) {
+  box-shadow: 0 0 0 2px rgba(191, 219, 254, 0.4) !important;
+}
+
+.p-inputotp .p-inputtext:focus,
+.p-inputotp .p-inputtext.p-focus {
+  border-color: #BFDBFE !important;
+  box-shadow: 0 0 0 2px rgba(191, 219, 254, 0.7) !important;
+  outline: none !important;
+}
+
 .p-menu-overlay {
   z-index: 9999;
 }
@@ -18,12 +35,12 @@
 }
 
 .form-label {
-    @apply text-[16px] pb-1 font-geist font-medium leading-[100%] tracking-[0px] text-gray-700;
+    @apply text-[14px] md:text-[16px] pb-1 font-geist font-medium leading-[100%] tracking-[0px] text-gray-700;
   }
 
 
 .form-input{
-    @apply border rounded-md p-[10px] text-[10px] md:text-[14px] font-geist font-normal leading-[100%] tracking-[0px] text-gray-700 placeholder-gray-400 align-middle focus:outline-none focus:ring-2 focus:ring-blue-300;
+    @apply border rounded-md p-[10px] text-[10px] md:text-[14px] font-geist font-normal leading-[100%] tracking-[0px] text-gray-700 placeholder-gray-400 align-middle focus:outline-none focus:border-blue-100  focus:ring-2 focus:ring-blue-100;
 }
 
 .input-container{
@@ -44,7 +61,7 @@
 
 
 .account-input{
-    @apply border border-[#E5E7EB]  p-[10px] text-[10px] md:text-[14px] font-geist font-normal leading-[100%] tracking-[0px] text-gray-700 placeholder-gray-400 align-middle focus:border-blue-300 focus:outline-none ;
+    @apply border border-[#E5E7EB] px-[5px] py-[7px]  md:p-[10px] text-[6px] md:text-[14px] font-geist font-normal leading-[100%] tracking-[0px] text-gray-700 placeholder-gray-400 align-middle focus:border-blue-300 focus:outline-none ;
 }
 .account-label {
     @apply text-[8px] sm:text-[12px] md:text-[14px] lg:text-[16px] pb-1 font-geist font-medium leading-[100%] tracking-[0px] text-gray-700;

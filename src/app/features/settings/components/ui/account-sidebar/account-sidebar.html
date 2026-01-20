@@ -1,7 +1,7 @@
 <div class="flex flex-col h-full p-1 sm:p-2 lg:p-6 justify-between">
   <div>
     <ul
-      class="space-y-2 font-geist text-[8px] md:text-xs lg:text-base font-normal align-middle tracking-normal leading-none"
+      class="font-geist text-[6px] md:text-xs lg:text-base font-normal align-middle tracking-normal leading-none"
     >
       <app-account-sidebar-action
         icon="/assets/circle-user-round.png"
@@ -24,11 +24,15 @@
   </div>
   <div>
     <ul
-      class="font-geist text-xs lg:text-base font-normal align-middle tracking-normal leading-none"
+      class="font-geist text-[6px] md:text-xs lg:text-base font-normal align-middle tracking-normal leading-none"
     >
       <li>
         <button (click)="logOut()" class="text-[#DC2626] w-full sidebar-link bg-red-50">
-          <img class="w-[18px] h-[18px]" src="/assets/log-out.png" alt="User Account" />
+          <img
+            class="w-[12px] h-[12px] md:w-[18px] md:h-[18px]"
+            src="/assets/log-out.png"
+            alt="User Account"
+          />
           <a class="whitespace-nowrap">Logout</a>
         </button>
       </li>
