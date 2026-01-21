@@ -34,6 +34,9 @@ This project follows **Clean Architecture principles** to ensure scalability, ma
   - Converts backend API responses into frontend-friendly data models
 - **Separation of Concerns**
   - Clear separation between UI components, services, and business logic
+- **Reusable UI Components**
+  - Shared buttons, headers, and error-handling components
+
  
 ## 🛠 Technical Highlights:
 - Built with Angular20.
@@ -45,6 +48,3 @@ This project follows **Clean Architecture principles** to ensure scalability, ma
 - Reusable components.
 - PrimeNG components.
 - SCSS & Tailwind CSS for responsive styling.
-
-- **Reusable UI Components**
-  - Shared buttons, headers, and error-handling components
