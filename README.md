@@ -34,5 +34,17 @@ This project follows **Clean Architecture principles** to ensure scalability, ma
   - Converts backend API responses into frontend-friendly data models
 - **Separation of Concerns**
   - Clear separation between UI components, services, and business logic
+ 
+## 🛠 Technical Highlights:
+- Built with Angular20.
+- Reactive Forms with custom validation.
+- Clean Architecture principles.
+- Adaptor pattern to handle Api response.
+- Route Guards for protecting authenticated routes.
+- HTTP interceptor for attaching JWT token.
+- Reusable components.
+- PrimeNG components.
+- SCSS & Tailwind CSS for responsive styling.
+
 - **Reusable UI Components**
   - Shared buttons, headers, and error-handling components
