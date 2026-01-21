@@ -19,7 +19,6 @@ An Angular-based Online Exam application that enables users to assess their know
 
 ### 🧠 Online Exam System
 - Multiple quiz topics
-- Interactive and intuitive quiz experience
 - Instant evaluation and performance feedback
 - Clean, responsive, and user-friendly UI
 
